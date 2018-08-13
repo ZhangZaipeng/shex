@@ -12,23 +12,14 @@
 	<description>shang hai exchange</description>
 	
 	<modules>
-	    	<module>shex-service</module>
 		<module>shex-api</module>
-		<module>shex-admin</module>
-		<module>shex-platform</module>
-		<module>shex-mq</module>
-		<module>shex-common</module>
-		<module>shex-task</module>
-		<module>shex-coin</module>
-    		<module>shex-wallet</module>
-    		<module>shex-deploy</module>
+		<module>shex-deploy</module>
   	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>1.5.4.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -36,19 +27,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
@@ -75,6 +53,7 @@
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
 					<include>**/*.ftl</include>
+					<include>**/*.yml</include>
 				</includes>
 					<excludes>
 					<exclude>**/.svn/</exclude>

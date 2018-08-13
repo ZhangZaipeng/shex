@@ -202,7 +202,7 @@ start_tomcat() {
 	## start tomcat
 	echo -e "$HOST_NAME: starting tomcat ... check log: $APP_CHECK_LOG \c"
 	echo "start tomcat $BASE_BIN_DIR"
-	$BASE_BIN_DIR/jettyctl.sh start 1>$APP_CHECK_LOG 2>$APP_CHECK_LOG &
+	$BASE_BIN_DIR/tomcatctl.sh start 1>$APP_CHECK_LOG 2>$APP_CHECK_LOG &
 	
 	## check monitor
 	check_monitor_ok
@@ -214,8 +214,8 @@ stop_tomcat() {
 	    echo -e "$HOST_NAME: stopping tomcat ... "
 	    $BASE_BIN_DIR/tomcatctl.sh stop >> /dev/null 2>&1
 
-	    ##check if stop failed ,do kill -9
-	    JETTY_JAVA_PID=`get_pid "$APP_NAME"`
+	    ## check if stop failed ,do kill -9
+	    TOMCAT_JAVA_PID=`get_pid "$APP_NAME"`
 	    if [ ! -z "$TOMCAT_JAVA_PID" ] ; then
 	        echo -e "kill java process $TOMCAT_JAVA_PID ..."
 	        /bin/kill -9 $TOMCAT_JAVA_PID >> /dev/null 2>&1

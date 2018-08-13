@@ -45,12 +45,13 @@ prepare() {
 start() {
 	prepare
 	## 启动tomcat
-	JAVA JAVA_OPTIONS -jar $JETTY_WEBAPPS/$MODULE_NAME.jar
+	$JAVA $JAVA_OPTIONS -jar $JETTY_WEBAPPS/$MODULE_NAME.jar
 }
 
 
 stop() {
-	$JETTY_HOME/bin/jetty.sh stop
+    BOOT_SHUTDOWN_URL="http:127.0.0.1:${APP_PORT}/${MODULE_NAME}/shutdown"
+	curl -X POST $BOOT_SHUTDOWN_URL
 }
 
 if [ "$1" == "-v" ] || [ "$1" == "-h" ]; then
