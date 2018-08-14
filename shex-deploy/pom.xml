@@ -72,7 +72,7 @@
                       <!--<artifactId>shex-user</artifactId>-->
                       <artifactId>shex-${moduleName}</artifactId>
                       <version>0.0.1-SNAPSHOT</version>
-                      <type>war</type>
+                      <type>jar</type>
                     </artifactItem>
                   </artifactItems>
                   <outputDirectory>${release_directory}</outputDirectory>
@@ -94,30 +94,19 @@
                 </goals>
                 <configuration>
                   <tasks>
-                    <mkdir dir="${binconf_directory}/test"/>
-                    <mkdir dir="${binconf_directory}/lib"/>
                     <copy encoding="${file_encoding}" outputencoding="${file_encoding}"
                           todir="${release_directory}">
                       <fileset file="${binconf_directory}/install.sh"/>
                     </copy>
                     <chmod dir="${binconf_directory}/bin" includes="**" perm="755"/>
                     <zip destfile="${release_directory}/web-deploy.zip">
-                      <!-- 打包httpd,jetty相关配置 -->
-                      <zipfileset dir="${binconf_directory}">
-                        <include name="conf/**"/>
-                        <include name="htdocs/**"/>
-                      </zipfileset>
-                      <!-- 打包war包 -->
+                      <!-- 打包脚本目录 -->
                       <zipfileset dir="${binconf_directory}" filemode="755">
                         <include name="bin/**"/>
                       </zipfileset>
-                      <!-- 打包脚本目录 -->
+                      <!-- 打包jar包 -->
                       <zipfileset dir="${release_directory}">
-                        <include name="*.war"/>
-                      </zipfileset>
-                      <!-- task用到的共用的lib -->
-                      <zipfileset dir="${binconf_directory}" filemode="755">
-                        <include name="lib/**"/>
+                        <include name="*.jar"/>
                       </zipfileset>
                     </zip>
                   </tasks>
@@ -158,17 +147,15 @@
                   <goal>copy</goal>
                 </goals>
                 <configuration>
-                  <!-- copy 内容 -->
                   <artifactItems>
                     <artifactItem>
                       <groupId>com.shex</groupId>
                       <!--<artifactId>shex-user</artifactId>-->
                       <artifactId>shex-${moduleName}</artifactId>
                       <version>0.0.1-SNAPSHOT</version>
-                      <type>war</type>
+                      <type>jar</type>
                     </artifactItem>
                   </artifactItems>
-                  <!-- copy war to 当前项目的target目录下 -->
                   <outputDirectory>${release_directory}</outputDirectory>
                   <overWriteReleases>false</overWriteReleases>
                   <overWriteSnapshots>true</overWriteSnapshots>
@@ -188,30 +175,19 @@
                 </goals>
                 <configuration>
                   <tasks>
-                    <!-- 创建文件夹 -->
-                    <mkdir dir="${binconf_directory}/lib"/>
                     <copy encoding="${file_encoding}" outputencoding="${file_encoding}"
-                      todir="${release_directory}">
+                          todir="${release_directory}">
                       <fileset file="${binconf_directory}/install.sh"/>
                     </copy>
                     <chmod dir="${binconf_directory}/bin" includes="**" perm="755"/>
                     <zip destfile="${release_directory}/web-deploy.zip">
-                      <!-- 打包httpd,jetty相关配置 -->
-                      <zipfileset dir="${binconf_directory}">
-                        <include name="conf/**"/>
-                        <include name="htdocs/**"/>
-                      </zipfileset>
                       <!-- 打包脚本目录 -->
                       <zipfileset dir="${binconf_directory}" filemode="755">
                         <include name="bin/**"/>
                       </zipfileset>
-                      <!-- 打包war包 -->
+                      <!-- 打包jar包 -->
                       <zipfileset dir="${release_directory}">
-                        <include name="*.war"/>
-                      </zipfileset>
-                      <!-- task用到的共用的lib -->
-                      <zipfileset dir="${binconf_directory}" filemode="755">
-                        <include name="lib/**"/>
+                        <include name="*.jar"/>
                       </zipfileset>
                     </zip>
                   </tasks>
@@ -255,7 +231,7 @@
                       <!--<artifactId>shex-user</artifactId>-->
                       <artifactId>shex-${moduleName}</artifactId>
                       <version>0.0.1-SNAPSHOT</version>
-                      <type>war</type>
+                      <type>jar</type>
                     </artifactItem>
                   </artifactItems>
                   <outputDirectory>${release_directory}</outputDirectory>
@@ -277,29 +253,19 @@
                 </goals>
                 <configuration>
                   <tasks>
-                    <mkdir dir="${binconf_directory}/lib"/>
                     <copy encoding="${file_encoding}" outputencoding="${file_encoding}"
                       todir="${release_directory}">
                       <fileset file="${binconf_directory}/install.sh"/>
                     </copy>
                     <chmod dir="${binconf_directory}/bin" includes="**" perm="755"/>
                     <zip destfile="${release_directory}/web-deploy.zip">
-                      <!-- 打包httpd,jetty相关配置 -->
-                      <zipfileset dir="${binconf_directory}">
-                        <include name="conf/**"/>
-                        <include name="htdocs/**"/>
-                      </zipfileset>
-                      <!-- 打包war包 -->
+                      <!-- 打包脚本目录 -->
                       <zipfileset dir="${binconf_directory}" filemode="755">
                         <include name="bin/**"/>
                       </zipfileset>
-                      <!-- 打包脚本目录 -->
+                      <!-- 打包jar包 -->
                       <zipfileset dir="${release_directory}">
-                        <include name="*.war"/>
-                      </zipfileset>
-                      <!-- task用到的共用的lib -->
-                      <zipfileset dir="${binconf_directory}" filemode="755">
-                        <include name="lib/**"/>
+                        <include name="*.jar"/>
                       </zipfileset>
                     </zip>
                   </tasks>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by ZhangZp on 2018/8/13.
  */
 @RestController
-public class ZOkController {
+public class Zok {
 
     @GetMapping(value = "ok.html")
     public String ok(){

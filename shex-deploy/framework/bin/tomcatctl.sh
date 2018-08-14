@@ -50,7 +50,7 @@ start() {
 
 
 stop() {
-    BOOT_SHUTDOWN_URL="http:127.0.0.1:${APP_PORT}/${MODULE_NAME}/shutdown"
+    BOOT_SHUTDOWN_URL="http://127.0.0.1:${APP_PORT}/${MODULE_NAME}/shutdown"
 	curl -X POST $BOOT_SHUTDOWN_URL
 }
 
