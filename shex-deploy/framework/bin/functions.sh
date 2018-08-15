@@ -201,7 +201,7 @@ start_tomcat() {
 	
 	## start tomcat
 	echo -e "$HOST_NAME: starting tomcat ... check log: $APP_CHECK_LOG \c"
-	echo "start tomcat $BASE_BIN_DIR"
+	echo "start tomcat, BASE_BIN_DIR --> $BASE_BIN_DIR"
 	$BASE_BIN_DIR/tomcatctl.sh start 1>$APP_CHECK_LOG 2>$APP_CHECK_LOG &
 	
 	## check monitor

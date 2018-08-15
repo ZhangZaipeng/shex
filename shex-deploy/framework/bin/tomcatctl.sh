@@ -1,4 +1,6 @@
 #!/bin/bash
+set -x
+set -e
 
 BASE_BIN_DIR=`dirname $0`
 # public env
