@@ -5,10 +5,10 @@ set -e
 exec 8<>/home/www/sbin/jm_web.lock
 flock -n 8 ||exit 1
 
-SourcePath=/home/www/ws/branches
-appName=
-ProjectPackgePath=
-Devn=
+SourcePath=/home/www/project/shex
+appName=${appName}
+ProjectPackgePath=/home/www/project/shex/shex-deploy/target/web-deploy.zip
+Devn=dev
 LockFile=~/sbin/$appName.lock
 
 ###项目打包编译
