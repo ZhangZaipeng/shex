@@ -35,8 +35,8 @@
         <moduleName>api</moduleName>
         <appserverPort>8081</appserverPort>
         <appDebugPort>18081</appDebugPort>
-        <deployhome>/home/www/htdocs/shex-api-server/web-deploy</deployhome>
-        <output>/home/www/output/shex-api-server</output>
+        <!--<deployhome>/home/www/htdocs/shex-api-server/web-deploy</deployhome>-->
+        <!--<output>/home/www/output/shex-api-server</output>-->
       </properties>
     </profile>
 
