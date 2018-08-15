@@ -1,6 +1,4 @@
 #!/bin/bash
-set -x
-set -e
 
 BASE_BIN_DIR=`dirname $0`
 # public env
@@ -47,7 +45,7 @@ prepare() {
 start() {
 	prepare
 	## 启动tomcat
-	$JAVA $JAVA_OPTIONS -jar $JETTY_WEBAPPS/$MODULE_NAME.jar
+	$JAVA $JAVA_OPTIONS -jar $TOMCAT_WEBAPPS/$MODULE_NAME.jar
 }
 
 
@@ -58,7 +56,7 @@ stop() {
 
 if [ "$1" == "-v" ] || [ "$1" == "-h" ]; then
   echo "Useage: tomcatctl.sh run   ##前台启动"
-  echo "        tomcatctl.sh start ##后台异步 jetty --daemon"
+  echo "        tomcatctl.sh start ##后台异步 tomcat --daemon"
   echo "        tomcatctl.sh stop  ##关闭"
 elif [ "$1" == "start" ]; then
   start
