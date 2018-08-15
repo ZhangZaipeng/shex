@@ -115,7 +115,7 @@ get_pid() {
 check_monitor_ok() {
     # CHECK_STARTUP_URL="http://127.0.0.1:${APP_PORT}/ok.html" module
 
-    CHECK_STARTUP_URL="http://127.0.0.1:${APP_PORT}/${MODULE_NAME}/ok.html"
+    CHECK_STARTUP_URL="http://127.0.0.1:${APP_PORT}/${MODULE_NAME}/ok.htm"
 
     STARTUP_SUCCESS_MSG="ok"
 	

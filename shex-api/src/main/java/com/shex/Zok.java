@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Zok {
 
-    @GetMapping(value = "ok.html")
+    @GetMapping(value = "ok.htm")
     public String ok(){
         return "ok 2345";
     }
