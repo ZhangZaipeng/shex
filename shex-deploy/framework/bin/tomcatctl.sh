@@ -18,7 +18,7 @@ JAVA_OPTIONS="$JAVA_OPTS" ## jvm参数
 export TOMCAT_WEBAPPS TOMCAT_PID TOMCAT_LOGS JAVA_OPTIONS JAVA
 
 prepare() {
-	# delete jetty work home dir, then make the jetty work
+	# delete tomcat work home dir, then make the jetty work
 	if [ -d "$TOMCAT_SERVER_HOME" ] ; then
    		rm -rf  "$TOMCAT_SERVER_HOME"
 	fi
@@ -37,7 +37,7 @@ prepare() {
 	# rm -rf  "$JETTY_WEBAPPS/root.war $JETTY_WEBAPPS/root/"
   	# cp $DEPLOY_HOME/*.war  $JETTY_WEBAPPS/root.war
   	rm -rf  "$TOMCAT_WEBAPPS/*.jar"
-  	cp $DEPLOY_HOME/*.jar  $JETTY_WEBAPPS/$MODULE_NAME.jar
+  	cp $DEPLOY_HOME/*.jar  $TOMCAT_WEBAPPS/$MODULE_NAME.jar
   	echo -e "has copyed $MODULE_NAME.jar"
 }
 
