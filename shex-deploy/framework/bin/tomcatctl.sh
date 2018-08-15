@@ -9,7 +9,7 @@ if [ -f $BASE_BIN_DIR/env.sh ]; then
 	. $BASE_BIN_DIR/env.sh
 fi
 
-## jetty所需相关参数
+## tomcat 所需相关参数
 TOMCAT_WEBAPPS="$TOMCAT_SERVER_HOME/webapps"
 TOMCAT_PID="$OUTPUT_HOME/logs/tomcat.pid"
 JAVA="$JAVA_HOME/bin/java"
@@ -18,7 +18,7 @@ JAVA_OPTIONS="$JAVA_OPTS" ## jvm参数
 export TOMCAT_WEBAPPS TOMCAT_PID TOMCAT_LOGS JAVA_OPTIONS JAVA
 
 prepare() {
-	# delete tomcat work home dir, then make the jetty work
+	# delete tomcat work home dir, then make the tomcat work
 	if [ -d "$TOMCAT_SERVER_HOME" ] ; then
    		rm -rf  "$TOMCAT_SERVER_HOME"
 	fi
@@ -34,8 +34,6 @@ prepare() {
   		touch "$OUTPUT_HOME/logs/${MODULE_NAME}_stdout.log"
   	fi
   	  	
-	# rm -rf  "$JETTY_WEBAPPS/root.war $JETTY_WEBAPPS/root/"
-  	# cp $DEPLOY_HOME/*.war  $JETTY_WEBAPPS/root.war
   	rm -rf  "$TOMCAT_WEBAPPS/*.jar"
   	mv $DEPLOY_HOME/*.jar  $TOMCAT_WEBAPPS/$MODULE_NAME.jar
   	echo -e "has copyed $MODULE_NAME.jar"
