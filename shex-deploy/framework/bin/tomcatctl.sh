@@ -37,7 +37,7 @@ prepare() {
 	# rm -rf  "$JETTY_WEBAPPS/root.war $JETTY_WEBAPPS/root/"
   	# cp $DEPLOY_HOME/*.war  $JETTY_WEBAPPS/root.war
   	rm -rf  "$TOMCAT_WEBAPPS/*.jar"
-  	cp $DEPLOY_HOME/*.jar  $TOMCAT_WEBAPPS/$MODULE_NAME.jar
+  	mv $DEPLOY_HOME/*.jar  $TOMCAT_WEBAPPS/$MODULE_NAME.jar
   	echo -e "has copyed $MODULE_NAME.jar"
 }
 
