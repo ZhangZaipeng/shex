@@ -19,11 +19,11 @@ export TOMCAT_WEBAPPS TOMCAT_PID TOMCAT_LOGS JAVA_OPTIONS JAVA
 
 prepare() {
 	# delete tomcat work home dir, then make the tomcat work
-	if [ -d "$TOMCAT_SERVER_HOME" ] ; then
+	if [ -d "$TOMCAT_SERVER_HOME" ]; then
    		rm -rf  "$TOMCAT_SERVER_HOME"
 	fi
 
-	if [ ! -d "$TOMCAT_SERVER_HOME" ] ; then
+	if [ ! -d "$TOMCAT_SERVER_HOME" ]; then
     	mkdir -p "$TOMCAT_SERVER_HOME"
 	fi
 	
@@ -48,7 +48,7 @@ start() {
 
 
 stop() {
-    BOOT_SHUTDOWN_URL="http://127.0.0.1:${APP_PORT}/${MODULE_NAME}/shutdown"
+    BOOT_SHUTDOWN_URL=http://127.0.0.1:"$APP_PORT"/"$MODULE_NAME"/shutdown
 	curl -X POST $BOOT_SHUTDOWN_URL
 }
 

@@ -178,7 +178,7 @@ prepare_env() {
 }
 
 start_tomcat() {
-	APP_CHECK_LOG="$LOG_DIR/${MODULE_NAME}_stdout.log"
+	APP_CHECK_LOG="$LOG_DIR"/"$MODULE_NAME"_stdout.log
 
 	# tomcat server
 	if [ -f $APP_CHECK_LOG ]; then
