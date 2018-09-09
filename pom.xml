@@ -14,6 +14,8 @@
 	<modules>
 		<module>shex-common</module>
 		<module>shex-platform</module>
+		<module>shex-dao</module>
+		<module>shex-api-service</module>
 		<module>shex-api</module>
 		<module>shex-deploy</module>
   	</modules>
@@ -43,6 +45,18 @@
 				<groupId>com.shex</groupId>
 				<artifactId>shex-platform</artifactId>
 				<version>0.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.shex</groupId>
+				<artifactId>shex-api-service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.shex</groupId>
+				<artifactId>shex-dao</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<!--  slf4j-api-->
@@ -222,6 +236,20 @@
 					<useDefaultDelimiters>false</useDefaultDelimiters>
 				</configuration>
 			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.3</version>
+				<!-- MAVEN的maven-surefire-plugin在新建JVM进程后,由于没有指定encoding,
+                    采用了OS的默认编码,导致读取UTF-8文件(测试类的sql脚本文件)时出现乱码,最终影响了TestNG的正确执行 -->
+				<configuration>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
