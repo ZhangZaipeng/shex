@@ -1,12 +1,15 @@
 package com.shex.api.controller;
 
+import com.shex.dao.domain.Test;
+import com.shex.dao.mapper.TestMapper;
 import com.shex.apiservice.test.TestService;
-import com.shex.domain.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/8/19.
@@ -19,14 +22,17 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private TestMapper testMapper;
+
     @GetMapping(value = "/ok.json")
     public String ok() {
         return testService.test();
     }
 
     @GetMapping(value = "/ok1.json")
-    public Test ok1() {
-        return testService.test1();
+    public List<Test> ok1() {
+        return testMapper.selectById();
     }
 
 

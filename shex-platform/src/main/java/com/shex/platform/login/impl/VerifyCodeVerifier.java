@@ -1,7 +1,7 @@
 /**
  * @(#)PasswordVerifier.java Copyright 2011 jointown, Inc. All rights reserved.
  */
-package com.shex.platform.login.impl;
+package com.shex.dao.platform.login.impl;
 
 import com.shex.platform.login.KeepLoginStatusVerifier;
 

@@ -1,7 +1,7 @@
 /**
  * @(#)WebApplicationContextUtils.java Copyright 2011 jointown, Inc. All rights reserved.
  */
-package com.shex.platform.springmvc;
+package com.shex.dao.platform.springmvc;
 
 
 import org.springframework.context.ApplicationContext;

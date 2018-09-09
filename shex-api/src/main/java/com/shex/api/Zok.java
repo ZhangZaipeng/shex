@@ -1,4 +1,4 @@
-package com.shex.api;
+package com.shex.dao.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
