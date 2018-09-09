@@ -2,13 +2,7 @@ spring:
   # 表示放在classpath的i18n文件夹，文件前缀为mess
   messages:
     basename: language/messages
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    # driverClassName: net.sf.log4jdbc.DriverSpy
-    url: jdbc:mysql://47.75.95.136:3306/hcwt_app?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
-    #url: jdbc:log4jdbc:mysql://mysql.zhangzp.cn:3306/hadoop2?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    username: app-select
-    password: hcwt1234
+
 # 自定义属性
 cupSize: B
 
@@ -17,6 +11,6 @@ man:
   realName: zhangzaipeng
 
 mybatis:
-  # typeAliasesPackage: com.hwz.**.domain
+  #typeAliasesPackage: com.hwz.**.domain
   mapperLocations: classpath:/com/shex/**/mapper/*.ibatis.xml
   # configLocation: classpath:/mybatis-config.xml

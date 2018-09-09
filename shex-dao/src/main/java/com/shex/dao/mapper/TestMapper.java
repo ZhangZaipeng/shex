@@ -1,12 +1,13 @@
-package com.shex.mapper;
+package com.shex.dao.mapper;
 
-import com.shex.domain.Test;
-import com.shex.platform.mybatis.DefaultMapper;
+import com.shex.dao.domain.Test;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Mapper
 public interface TestMapper{
-    Test selectById();
+    List<Test> selectById();
 }

@@ -1,4 +1,4 @@
-package com.shex;
+package com.shex.dao;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

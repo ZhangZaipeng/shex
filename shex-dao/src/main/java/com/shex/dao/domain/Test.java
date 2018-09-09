@@ -1,4 +1,4 @@
-package com.shex.domain;
+package com.shex.dao.domain;
 
 /**
  * Created by Administrator on 2018/8/19.

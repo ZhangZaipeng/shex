@@ -1,0 +1,25 @@
+# 自定义属性
+man:
+  telephone: 13308629879
+  realName: lisi
+  servers[0]: kk
+  servers[1]: jj
+
+
+mybatis:
+  # typeAliasesPackage: com.hwz.**.domain
+  mapperLocations: classpath:/com/hwz/**/mapper/*.ibatis.xml
+  # configLocation: classpath:/mybatis-config.xml
+
+logging:
+  level:
+    root: INFO
+    jdbc.sqltiming: INFO
+    jdbc.audit: 'OFF'
+    jdbc.resultset: 'OFF'
+    jdbc.resultsettable: 'OFF'
+    jdbc.sqlonly: 'OFF'
+    jdbc.connection: 'OFF'
+    org.apache.tomcat.util.net.NioEndpoint: 'OFF'
+    org.springframework.cache.interceptor.CacheInterceptor: TRACE
+    org.springframework.jdbc.datasource.DataSourceTransactionManager: DEBUG
