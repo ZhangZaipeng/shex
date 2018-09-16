@@ -8,6 +8,6 @@ import java.util.List;
 
 @Component
 @Mapper
-public interface TestMapper{
+public interface TestMapper extends {
     List<Test> selectById();
 }
