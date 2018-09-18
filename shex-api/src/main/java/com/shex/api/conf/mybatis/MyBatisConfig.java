@@ -1,6 +1,18 @@
 package com.shex.api.conf.mybatis;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.shex.platform.mybatis.DefaultMapper;
+import javax.sql.DataSource;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -8,33 +20,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  */
 @Configuration
-@EnableTransactionManagement
 public class MyBatisConfig {
-   /*private static final String MAPPER_LOCATION = "classpath:/com/shex*//**//*mapper*//*.ibatis.xml";
+   private static final String MAPPER_LOCATION = "classpath:/com/shex/**/mapper/*.ibatis.xml";
 
-    @Autowired
-    private DataSourceProperties dataSourceProperties;
-
-    @Bean(name = "mapperScannerConfigurer")
-    public MapperScannerConfigurer mapperScannerConfigurer () {
-        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setBasePackage("com.shex");
-        mapperScannerConfigurer.setMarkerInterface(DefaultMapper.class);
-
-        return mapperScannerConfigurer;
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource dataSource() {
+      return new com.alibaba.druid.pool.DruidDataSource();
     }
 
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource)
+    public SqlSessionFactory sqlSessionFactory()
             throws Exception {
         final SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+        sqlSessionFactoryBean.setDataSource(dataSource());
+        sqlSessionFactoryBean.setMapperLocations(
+            new PathMatchingResourcePatternResolver()
                 .getResources(MAPPER_LOCATION));
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean(name = "dataSource")
+
+    /*@Bean(name = "dataSource")
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(dataSourceProperties.getDriverClass());
@@ -47,10 +54,5 @@ public class MyBatisConfig {
         dataSource.setUsername("test");
         dataSource.setPassword("LxY7wQfJs_jsX");
         return dataSource;
-    }
-
-    @Bean(name = "transactionManager")
-    public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
     }*/
 }
