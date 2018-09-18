@@ -29,10 +29,10 @@
 			<artifactId>shex-platform</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.shex</groupId>
 			<artifactId>shex-dao</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>com.shex</groupId>

@@ -9,15 +9,6 @@ spring:
     url: jdbc:mysql://47.75.95.136:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
     username: test
     password: LxY7wQfJs_jsX
-
-  datasource:
-    # driverClassName: net.sf.log4jdbc.DriverSpy
-    # url: jdbc:log4jdbc:mysql://mysql.zhangzp.cn:3306/hadoop2?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.75.95.136:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
-    username: test
-    password: LxY7wQfJs_jsX
-    type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
     maxActive: 30
     initialSize: 5
@@ -26,6 +17,7 @@ spring:
     maxIdle: 20
     timeBetweenEvictionRunsMillis: 60000
     minEvictableIdleTimeMillis: 1200000
+
 # 自定义属性
 cupSize: B
 
