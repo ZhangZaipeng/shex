@@ -1,7 +1,6 @@
 package com.shex.dao.mapper;
 
 import com.shex.dao.domain.Test;
-import com.shex.platform.mybatis.DefaultMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
