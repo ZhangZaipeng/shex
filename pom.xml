@@ -228,6 +228,7 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+
 		<plugins>
 			<plugin>
 				<!-- 用来处理资源文件 -->
