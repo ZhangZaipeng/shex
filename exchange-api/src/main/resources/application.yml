@@ -1,0 +1,29 @@
+server:
+  # 应用端口
+  port: 8081
+  # tomcat 配置
+  tomcat:
+    max-threads: 200 # 最大线程数量 默认200
+    uri-encoding: UTF-8
+    max-connections: 500 # 最大连接数量 1000
+    min-spare-threads: 20 # 初始化线程是20
+  connection-timeout: 20000
+  contexchanget-path: /api
+
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false
+
+# 激活配置文件
+spring:
+  profiles:
+    active: dev
+
+
+
+
+
+
+
+

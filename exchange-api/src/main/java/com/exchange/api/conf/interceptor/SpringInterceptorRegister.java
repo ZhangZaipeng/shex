@@ -1,0 +1,35 @@
+package com.exchange.api.conf.interceptor;
+
+import com.exchange.api.interceptor.AuthLevelInterceptor;
+import com.exchange.api.interceptor.LanguageInterceptor;
+import com.exchange.api.interceptor.LoginInterceptor;
+import org.springframework.contexchanget.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+/**
+ * Created by zhangzp on 2018/8/20 0008.
+ */
+@Configuration
+public class SpringInterceptorRegister exchangetends WebMvcConfigurerAdapter {
+
+    // 添加spring中的拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        // 语言国际化
+        registry.addInterceptor(new LanguageInterceptor()).
+                addPathPatterns("/**");
+
+        // 添加 登录 拦截器
+        registry.addInterceptor(new LoginInterceptor()).
+                    addPathPatterns("/**").exchangecludePathPatterns("/user/*");
+
+        // 添加 认证等级
+        registry.addInterceptor(new AuthLevelInterceptor()).
+                addPathPatterns("/api/**").exchangecludePathPatterns("");
+
+        super.addInterceptors(registry);
+    }
+
+}
