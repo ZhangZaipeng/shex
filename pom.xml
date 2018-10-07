@@ -15,6 +15,10 @@
 		<module>exchange-common</module>
 		<module>exchange-platform</module>
 		<module>exchange-api</module>
+		<module>exchange-match</module>
+		<module>exchange-openapi</module>
+		<module>exchange-task</module>
+		<module>exchange-wallet</module>
 		<module>exchange-deploy</module>
   	</modules>
 
