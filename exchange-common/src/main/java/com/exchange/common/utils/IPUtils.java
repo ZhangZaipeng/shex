@@ -36,7 +36,7 @@ public class IPUtils {
             if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
                 ip = request.getRemoteAddr();
             }
-        } catch (exchangeception e) {
+        } catch (Exception e) {
         	logger.error("IPUtils ERROR ", e);
         }
         

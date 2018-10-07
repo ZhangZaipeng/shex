@@ -1,7 +1,7 @@
 package com.exchange.api.conf.swagger;
 
-import org.springframework.contexchanget.annotation.Bean;
-import org.springframework.contexchanget.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;

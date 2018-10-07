@@ -3,7 +3,7 @@
  */
 package com.exchange.platform.login;
 
-import com.ex.common.utils.StringUtils;
+import com.exchange.common.utils.StringUtils;
 import com.exchange.platform.YvanUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 

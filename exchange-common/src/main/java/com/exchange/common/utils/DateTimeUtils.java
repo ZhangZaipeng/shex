@@ -71,7 +71,7 @@ public final class DateTimeUtils {
    * 月.日(M.d)
    */
   public static final String MONTH_DAY = "M.d";
-  public static final String REG_exchangeP_DATE = "^((" +
+  public static final String REG_exP_DATE = "^((" +
       "([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-"
       +
       "(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|(("
@@ -116,7 +116,7 @@ public final class DateTimeUtils {
     try {
       DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(pattern);
       return dateTimeFormatter.parseDateTime(dateString).toDate();
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       return null;
     }
   }
@@ -206,11 +206,11 @@ public final class DateTimeUtils {
    *
    * @return 日期数组（索引0为周一，索引1为下周一）
    */
-  public static Date[] getMondayAndNexchangetMonday() {
+  public static Date[] getMondayAndNextMonday() {
     DateTime dateTime = getDateOnly(new DateTime());
     DateTime monday = dateTime.dayOfWeek().withMinimumValue();
-    DateTime nexchangetMonday = monday.plusDays(7);
-    return new Date[]{monday.toDate(), nexchangetMonday.toDate()};
+    DateTime nextMonday = monday.plusDays(7);
+    return new Date[]{monday.toDate(), nextMonday.toDate()};
   }
 
   /**
@@ -426,9 +426,9 @@ public final class DateTimeUtils {
       dateString = dateString.trim();
       if (dateString.contains(" ")) {
         // 截取时分秒
-        hms = dateString.substring(dateString.indexchangeOf(" ") + 1, dateString.length());
+        hms = dateString.substring(dateString.indexOf(" ") + 1, dateString.length());
         // 重置日期
-        dateString = dateString.substring(0, dateString.indexchangeOf(" "));
+        dateString = dateString.substring(0, dateString.indexOf(" "));
         // 多中分隔符的支持
         hms = hms.replace("：", ":");
         hms = hms.replace("时", ":");
@@ -468,7 +468,7 @@ public final class DateTimeUtils {
 
       String dtr = (yearStr + "-" + formatDateSplit(monthStr) + "-" + formatDateSplit(dateStr) + " "
           + hms);
-      if (!dtr.matches(REG_exchangeP_DATE)) {
+      if (!dtr.matches(REG_exP_DATE)) {
         return null;
       }
       // 返回日期
@@ -477,7 +477,7 @@ public final class DateTimeUtils {
               (dateStr.trim()), Integer.parseInt(hmsarr[0].trim()),
           Integer.parseInt(hmsarr[1].trim()), Integer
           .parseInt(hmsarr[2].trim()), 0).toDate();
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       return null;
     }
   }
@@ -531,7 +531,7 @@ public final class DateTimeUtils {
         return formatDateString(dateStr, "yyMMdd");
       }
       return null;
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       return null;
     }
   }
@@ -540,7 +540,7 @@ public final class DateTimeUtils {
     try {
       Date date = formatUnknownString2Date(str);
       return date != null;
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       return false;
     }
   }

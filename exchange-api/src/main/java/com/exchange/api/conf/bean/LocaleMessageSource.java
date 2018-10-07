@@ -1,7 +1,7 @@
 package com.exchange.api.conf.bean;
 
-import org.springframework.contexchanget.MessageSource;
-import org.springframework.contexchanget.i18n.LocaleContexchangetHolder;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -42,7 +42,7 @@ public class LocaleMessageSource {
      */
     public String getMessage(String code, Object[] args, String defaultMessage){
         //这里使用比较方便的方法，不依赖request.
-        Locale locale = LocaleContexchangetHolder.getLocale();
+        Locale locale = LocaleContextHolder.getLocale();
         return messageSource.getMessage(code, args, defaultMessage, locale);
     }
 }

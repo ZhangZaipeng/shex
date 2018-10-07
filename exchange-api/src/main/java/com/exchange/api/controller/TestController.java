@@ -1,6 +1,5 @@
 package com.exchange.api.controller;
 
-import com.exchange.apiservice.test.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +16,12 @@ public class TestController {
 
     Logger logger = LoggerFactory.getLogger(TestController.class);
 
-    @Autowired
-    private TestService testService;
-
 //    @Autowired
 //    private TestMapper testMapper;
 
     @GetMapping(value = "/ok.json")
     public String ok() {
-        return testService.test();
+        return "23123";
     }
 
 

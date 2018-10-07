@@ -1,6 +1,6 @@
 package com.exchange.platform.platform;
 
-import com.ex.common.utils.StringUtils;
+import com.exchange.common.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

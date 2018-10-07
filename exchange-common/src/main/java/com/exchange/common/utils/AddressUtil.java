@@ -15,7 +15,7 @@ public class AddressUtil {
      * @param encodingString
      *            服务器端请求编码。如GBK,UTF-8等
      * @return
-     * @throws UnsupportedEncodingexchangeception
+     * @throws UnsupportedEncodingException
      */
     public static String getAddresses(String content, String encodingString) {
         // 这里调用淘宝API
@@ -72,7 +72,7 @@ public class AddressUtil {
             }
             reader.close();
             return buffer.toString();
-        } catch (IOexchangeception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             if (connection != null) {
@@ -130,7 +130,7 @@ public class AddressUtil {
                                 value = (value << 4) + 10 + aChar - 'A';
                                 break;
                             default:
-                                throw new IllegalArgumentexchangeception(
+                                throw new IllegalArgumentException(
                                         "Malformed      encoding.");
                         }
                     }

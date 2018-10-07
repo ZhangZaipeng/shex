@@ -3,9 +3,9 @@
  */
 package com.exchange.platform.login.impl;
 
-import com.ex.common.utils.StringUtils;
+import com.exchange.common.utils.StringUtils;
 import com.exchange.platform.YvanUtil;
-import com.ex.platform.login.*;
+import com.exchange.platform.login.*;
 import com.exchange.platform.springmvc.WebContext;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;

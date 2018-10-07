@@ -12,6 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class ExchangeApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(exchangeApiApplication.class, args);
+		SpringApplication.run(ExchangeApiApplication.class, args);
 	}
 }

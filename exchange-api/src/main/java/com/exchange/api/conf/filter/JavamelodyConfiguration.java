@@ -4,7 +4,7 @@ import net.bull.javamelody.MonitoringFilter;
 import net.bull.javamelody.SessionListener;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
-import org.springframework.contexchanget.annotation.Bean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 
 /**

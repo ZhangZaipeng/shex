@@ -9,11 +9,11 @@ public class SSLSocketClient {
   //获取这个SSLSocketFactory
   public static SSLSocketFactory getSSLSocketFactory() {
     try {
-      SSLContexchanget sslContexchanget = SSLContexchanget.getInstance("SSL");
-      sslContexchanget.init(null, getTrustManager(), new SecureRandom());
-      return sslContexchanget.getSocketFactory();
-    } catch (exchangeception e) {
-      throw new Runtimeexchangeception(e);
+      SSLContext sslContext = SSLContext.getInstance("SSL");
+      sslContext.init(null, getTrustManager(), new SecureRandom());
+      return sslContext.getSocketFactory();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
   }
 
