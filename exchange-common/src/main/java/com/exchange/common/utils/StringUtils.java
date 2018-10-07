@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.regexchange.Matcher;
-import java.util.regexchange.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 字符操作常用方法集 Created by zhouhao on 16-6-6.
@@ -24,14 +24,14 @@ public class StringUtils {
   /**
    * 编译一个正则表达式，并且进行缓存,如果换成已存在则使用缓存
    *
-   * @param regexchange 表达式
+   * @param regex 表达式
    * @return 编译后的Pattern
    */
-  public static final Pattern compileRegexchange(String regexchange) {
-    Pattern pattern = PATTERN_CACHE.get(regexchange);
+  public static final Pattern compileRegex(String regex) {
+    Pattern pattern = PATTERN_CACHE.get(regex);
     if (pattern == null) {
-      pattern = Pattern.compile(regexchange);
-      PATTERN_CACHE.put(regexchange, pattern);
+      pattern = Pattern.compile(regex);
+      PATTERN_CACHE.put(regex, pattern);
     }
     return pattern;
   }
@@ -161,7 +161,7 @@ public class StringUtils {
     StringBuffer strBuf = new StringBuffer();
     byte[] bGBK = str.getBytes();
     for (int i = 0; i < bGBK.length; i++) {
-      strBuf.append(Integer.toHexchangeString(bGBK[i] & 0xff));
+      strBuf.append(Integer.toHexString(bGBK[i] & 0xff));
     }
     return strBuf.toString();
   }
@@ -170,7 +170,7 @@ public class StringUtils {
     StringBuffer strBuf = new StringBuffer();
     char[] chars = str.toCharArray();
     for (int i = 0; i < chars.length; i++) {
-      strBuf.append("\\u").append(Integer.toHexchangeString(chars[i]));
+      strBuf.append("\\u").append(Integer.toHexString(chars[i]));
     }
     return strBuf.toString();
   }
@@ -178,7 +178,7 @@ public class StringUtils {
   public static String toUnicodeString(char[] chars) {
     StringBuffer strBuf = new StringBuffer();
     for (int i = 0; i < chars.length; i++) {
-      strBuf.append("\\u").append(Integer.toHexchangeString(chars[i]));
+      strBuf.append("\\u").append(Integer.toHexString(chars[i]));
     }
     return strBuf.toString();
   }
@@ -222,9 +222,9 @@ public class StringUtils {
     return isInt(obj) || isDouble(obj);
   }
 
-  public static String matcherFirst(String patternStr, String texchanget) {
-    Pattern pattern = compileRegexchange(patternStr);
-    Matcher matcher = pattern.matcher(texchanget);
+  public static String matcherFirst(String patternStr, String text) {
+    Pattern pattern = compileRegex(patternStr);
+    Matcher matcher = pattern.matcher(text);
     String group = null;
     if (matcher.find()) {
       group = matcher.group();
@@ -261,7 +261,7 @@ public class StringUtils {
     if (obj instanceof Double || obj instanceof Float) {
       return true;
     }
-    return compileRegexchange("[-+]?\\d+\\.\\d+").matcher(obj.toString()).matches();
+    return compileRegex("[-+]?\\d+\\.\\d+").matcher(obj.toString()).matches();
   }
 
   /**
@@ -393,11 +393,11 @@ public class StringUtils {
    * 分隔字符串,根据正则表达式分隔字符串,只分隔首个,剩下的的不进行分隔,如: 1,2,3,4 将分隔为 ['1','2,3,4']
    *
    * @param str 要分隔的字符串
-   * @param regexchange 分隔表达式
+   * @param regex 分隔表达式
    * @return 分隔后的数组
    */
-  public static String[] splitFirst(String str, String regexchange) {
-    return str.split(regexchange, 2);
+  public static String[] splitFirst(String str, String regex) {
+    return str.split(regex, 2);
   }
 
   /**
@@ -428,21 +428,21 @@ public class StringUtils {
    * 将对象转为String后进行分割，如果为对象为空或者空字符,则返回null
    *
    * @param object 要分隔的对象
-   * @param regexchange 分隔规则
+   * @param regex 分隔规则
    * @return 分隔后的对象
    */
-  public static final String[] toStringAndSplit(Object object, String regexchange) {
+  public static final String[] toStringAndSplit(Object object, String regex) {
     if (isNullOrEmpty(object)) {
       return null;
     }
-    return String.valueOf(object).split(regexchange);
+    return String.valueOf(object).split(regex);
   }
 
   private static boolean isChinese(char c) {
     Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
     if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
         || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
-        || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_exchangeTENSION_A
+        || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
         || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
         || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
         || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
@@ -635,13 +635,13 @@ public class StringUtils {
   /**
    * 判断是否含有特殊字符
    *
-   * @param texchanget
+   * @param text
    * @return boolean true,通过，false，没通过
    */
-  public static boolean hasSpecialChar(String texchanget) {
-    if (null == texchanget || "".equals(texchanget))
+  public static boolean hasSpecialChar(String text) {
+    if (null == text || "".equals(text))
       return false;
-    if (texchanget.replaceAll("[a-z]*[A-Z]*\\d*-*_*\\s*", "").length() == 0) {
+    if (text.replaceAll("[a-z]*[A-Z]*\\d*-*_*\\s*", "").length() == 0) {
       // 如果不包含特殊字符
       return true;
     }

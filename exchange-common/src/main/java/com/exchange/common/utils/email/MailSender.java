@@ -23,7 +23,7 @@ public class MailSender {
   /**
    * 传入Session、MimeMessage对象，创建 Transport 对象发送邮件
    */
-  public static void sendMail(Session session, MimeMessage msg) throws exchangeception {
+  public static void sendMail(Session session, MimeMessage msg) throws Exception {
     // 由 Session 对象获得 Transport 对象
     Transport.send(msg, msg.getRecipients(Message.RecipientType.TO));
   }
@@ -46,7 +46,7 @@ public class MailSender {
       MailSender.sendMail(session, mail);
 
       return true;
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       logger.info("error", e);
     }
     return false;
@@ -68,7 +68,7 @@ public class MailSender {
       MailSender.sendMail(session, mail);
 
       return true;
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       logger.info("发送邮件失败", e);
     }
 
@@ -81,7 +81,7 @@ public class MailSender {
    *
    * @param mailContent 邮件内容实体
    */
-  public static boolean senderQueueMail(MailContent mailContent) throws exchangeception {
+  public static boolean senderQueueMail(MailContent mailContent) throws Exception {
     // 判断邮件是否发送成功
     boolean flag = true;
     // 指定使用SMTP协议来创建Session对象
@@ -93,7 +93,7 @@ public class MailSender {
       MimeMessage mail = new WithAttachmentMessage().createMessage(session, mailContent);
       // 发送邮件
       MailSender.sendMail(session, mail);
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       flag = false;
       logger.info("send email error", e);
     }

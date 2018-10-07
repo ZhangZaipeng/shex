@@ -2,11 +2,11 @@ package com.exchange.common.utils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingexchangeception;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyexchangeception;
-import java.security.NoSuchAlgorithmexchangeception;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Map;
 import java.util.SortedMap;
@@ -33,8 +33,8 @@ public class ApiSignatureUtils {
    * 得出  Signature
    * @param appAccessKey AppKeyId
    * @param appSecretKey AppKeySecret
-   * eg：http://www.exchange.com/api/getAccount?id=123123
-   * @param host www.exchange.com
+   * eg：http://www.ex.com/api/getAccount?id=123123
+   * @param host www.ex.com
    * @param uri api/getAccount
    * @param method 请求方法，"GET"或"POST"
    * params 请求参数
@@ -65,10 +65,10 @@ public class ApiSignatureUtils {
       SecretKeySpec secKey =
           new SecretKeySpec(appSecretKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
       hmacSha256.init(secKey);
-    } catch (NoSuchAlgorithmexchangeception e) {
-      throw new Runtimeexchangeception("No such algorithm: " + e.getMessage());
-    } catch (InvalidKeyexchangeception e) {
-      throw new Runtimeexchangeception("Invalid key: " + e.getMessage());
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException("No such algorithm: " + e.getMessage());
+    } catch (InvalidKeyException e) {
+      throw new RuntimeException("Invalid key: " + e.getMessage());
     }
     String payload = sb.toString();
     byte[] hash = hmacSha256.doFinal(payload.getBytes(StandardCharsets.UTF_8));
@@ -89,8 +89,8 @@ public class ApiSignatureUtils {
   public static String urlEncode(String s) {
     try {
       return URLEncoder.encode(s, "UTF-8").replaceAll("\\+", "%20");
-    } catch (UnsupportedEncodingexchangeception e) {
-      throw new IllegalArgumentexchangeception("UTF-8 encoding not supported!");
+    } catch (UnsupportedEncodingException e) {
+      throw new IllegalArgumentException("UTF-8 encoding not supported!");
     }
   }
 

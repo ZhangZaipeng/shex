@@ -12,7 +12,7 @@ public class WithAttachmentMessage {
     /**
      * 根据传入的 Seesion对象创建MIME消息
      */
-    public MimeMessage createMessage(Session session, MailContent mailContent) throws exchangeception {
+    public MimeMessage createMessage(Session session, MailContent mailContent) throws Exception {
         MimeMessage mailMessage = new MimeMessage(session);
         Address from = new InternetAddress(mailContent.getUserForm());
         mailMessage.setFrom(from);
@@ -31,7 +31,7 @@ public class WithAttachmentMessage {
         }
 
         //设置自定义发件人昵称
-        String nick = javax.mail.internet.MimeUtility.encodeTexchanget("BCexchange");
+        String nick = javax.mail.internet.MimeUtility.encodeText("BCexchange");
 
         // 将所有接收者地址都添加到邮件接收者属性中
         mailMessage.setFrom(new InternetAddress(nick + "<" + from + ">"));

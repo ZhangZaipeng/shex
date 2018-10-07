@@ -16,7 +16,7 @@ public class SendTeleEmailUtils {
     mailContent.setTitle("【BITRR】用户邮箱验证码");
     mailContent.setBody(MailSender.MAIL_AUTH_CODE.replace("${code}", verifyCode));
     MailSender.sendSingleMail(mailContent);
-    responseStr[0] = "验证码已发送到您的邮箱" + email.substring(0,1) + "***" + email.substring(email.indexchangeOf('@')-1) + "，请登录邮箱查看，5分钟内有效。";
+    responseStr[0] = "验证码已发送到您的邮箱" + email.substring(0,1) + "***" + email.substring(email.indexOf('@')-1) + "，请登录邮箱查看，5分钟内有效。";
     log.info("发送邮箱信息验证码成功 account ===> {} code {}", email, verifyCode);
     return true;
   }

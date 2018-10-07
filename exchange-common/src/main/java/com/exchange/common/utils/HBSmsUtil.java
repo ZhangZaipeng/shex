@@ -1,10 +1,10 @@
 package com.exchange.common.utils;
 
 import java.io.BufferedReader;
-import java.io.IOexchangeception;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingexchangeception;
-import java.net.MalformedURLexchangeception;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -18,7 +18,7 @@ public class HBSmsUtil {
   private static String pwd = ConfigUtils.getString("hb.passwd");          // 密码
 
   private static int dc = 15;// 0表示英文，8表示UCS2，15表示中文
-  private static String hexchangeString = "0123456789ABCDEF";
+  private static String hexString = "0123456789ABCDEF";
 
   /**
    * @param phone 手机号
@@ -60,17 +60,17 @@ public class HBSmsUtil {
         rs = sb.toString();
 
 
-      } catch (IOexchangeception e) {
+      } catch (IOException e) {
         e.printStackTrace();
       } finally {
         in.close();
       }
 
-    } catch (MalformedURLexchangeception e) {
+    } catch (MalformedURLException e) {
       e.printStackTrace();
-    } catch (UnsupportedEncodingexchangeception e) {
+    } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
-    } catch (IOexchangeception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     // 发送短信  失败 r=9103 , r=9101  |  成功  id=154545211884963170
@@ -82,7 +82,7 @@ public class HBSmsUtil {
   }
 
 
-  public static String encode(String str) throws UnsupportedEncodingexchangeception {
+  public static String encode(String str) throws UnsupportedEncodingException {
 
     // 根据默认编码获取字节数组
 
@@ -94,9 +94,9 @@ public class HBSmsUtil {
 
     for (int i = 0; i < bytes.length; i++) {
 
-      sb.append(hexchangeString.charAt((bytes[i] & 0xf0) >> 4));
+      sb.append(hexString.charAt((bytes[i] & 0xf0) >> 4));
 
-      sb.append(hexchangeString.charAt((bytes[i] & 0x0f)));
+      sb.append(hexString.charAt((bytes[i] & 0x0f)));
 
     }
 
@@ -104,7 +104,7 @@ public class HBSmsUtil {
 
   }
 
-  public static void main(String[] args) throws exchangeception {
+  public static void main(String[] args) throws Exception {
 
     String content = "【签名】 内容 哈哈哈哈";
 

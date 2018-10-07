@@ -1,6 +1,6 @@
 package com.exchange.platform.login;
 
-import com.ex.common.response.ResponseCode;
+import com.exchange.common.response.ResponseCode;
 
 public class LoginErrException extends RuntimeException {
 

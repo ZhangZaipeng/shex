@@ -4,7 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOexchangeception;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public final class ConfigUtils {
   static {
     try {
       initProperty();
-    } catch (IOexchangeception e) {
+    } catch (IOException e) {
       log.error("error at init properties", e);
     }
   }
@@ -35,14 +35,14 @@ public final class ConfigUtils {
   /**
    * 初始化配置文件(config.properties)
    */
-  private static void initProperty() throws IOexchangeception {
+  private static void initProperty() throws IOException {
     if (propertiesMap != null) {
       return;
     }
     loadDefaultProperty();
   }
 
-  private static void loadDefaultProperty() throws IOexchangeception {
+  private static void loadDefaultProperty() throws IOException {
     propertiesMap = new HashMap<String, String>();
     InputStream ins = null;
     Properties properties = new Properties();
@@ -69,8 +69,8 @@ public final class ConfigUtils {
     String path = url.getPath();
     System.out.println(path);
     if (path.endsWith("/WEB-INF/classes/")) {
-      int beginIndexchange = path.length() - "WEB-INF/classes/".length();
-      return path.substring(0, beginIndexchange);
+      int beginIndex = path.length() - "WEB-INF/classes/".length();
+      return path.substring(0, beginIndex);
     }
     System.out.println(path);
 
@@ -95,7 +95,7 @@ public final class ConfigUtils {
     return Boolean.FALSE;
   }
 
-  public static void main(String[] args) throws IOexchangeception {
+  public static void main(String[] args) throws IOException {
     ConfigUtils.initProperty();
     System.out.println(ConfigUtils.getString("FASTDFS_ADDRESS"));
   }

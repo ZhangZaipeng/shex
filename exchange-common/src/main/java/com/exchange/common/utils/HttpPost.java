@@ -52,7 +52,7 @@ public final class HttpPost {
 		try {
 			//printErrorMsg(TAG, "==================== UrlAddress ====================");
 			//PrintMsg(TAG, "" + method.getURI());
-			client.exchangeecuteMethod(method);
+			client.executeMethod(method);
 			if (method.getStatusCode() == HttpStatus.SC_OK) {
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(method.getResponseBodyAsStream(),
@@ -67,7 +67,7 @@ public final class HttpPost {
 				//	PrintMsg(TAG, "" + result);
 				reader.close();
 			}
-		} catch (exchangeception e) {
+		} catch (Exception e) {
 			printErrorMsg(TAG, "Get request failed.", e);
 			result = "";
 		} finally {
@@ -152,7 +152,7 @@ public final class HttpPost {
 			}
 			br.close();
 			return result;
-		}catch (exchangeception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			return "获取异常";
 		}
@@ -176,7 +176,7 @@ public final class HttpPost {
 		try {
 			//	printErrorMsg(TAG, "==================== UrlAddress ====================");
 			///		PrintMsg(TAG, "" + method.getURI());
-			client.exchangeecuteMethod(method);
+			client.executeMethod(method);
 			if (method.getStatusCode() == HttpStatus.SC_OK) {
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(method.getResponseBodyAsStream(),
@@ -191,7 +191,7 @@ public final class HttpPost {
 				//	PrintMsg(TAG, "OK");
 				reader.close();
 			}
-		} catch (exchangeception e) {
+		} catch (Exception e) {
 			printErrorMsg(TAG, "Post request failed.", e);
 			result = "";
 		} finally {
@@ -209,7 +209,7 @@ public final class HttpPost {
 		System.err.println(Tag +"\n"+msg+"\n");
 	}
 
-	public static void printErrorMsg(String Tag,String msg,exchangeception e){
+	public static void printErrorMsg(String Tag,String msg,Exception e){
 		System.err.println(Tag +"\n"+msg+"\n"+ e.toString());
 	}
 

@@ -51,7 +51,7 @@ public class RSAUtils {
       map = new HashMap<String, Object>();
       map.put(KEY_RSA_PUBLICKEY, publicKey);
       map.put(KEY_RSA_PRIVATEKEY, privateKey);
-    } catch (NoSuchAlgorithmexchangeception e) {
+    } catch (NoSuchAlgorithmException e) {
       e.printStackTrace();
     }
 
@@ -80,7 +80,7 @@ public class RSAUtils {
       signature.initSign(key);
       signature.update(data);
       str = encryptBase64(signature.sign());
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return str;
@@ -110,7 +110,7 @@ public class RSAUtils {
       signature.initVerify(key);
       signature.update(data);
       flag = signature.verify(decryptBase64(sign));
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return flag;
@@ -136,7 +136,7 @@ public class RSAUtils {
       cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
       return cipher.doFinal(data);
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return result;
@@ -162,7 +162,7 @@ public class RSAUtils {
       cipher.init(Cipher.DECRYPT_MODE, publicKey);
 
       return cipher.doFinal(data);
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return result;
@@ -191,7 +191,7 @@ public class RSAUtils {
         System.out.print(a + ",");
       }
       return result;
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return result;
@@ -216,7 +216,7 @@ public class RSAUtils {
       cipher.init(Cipher.ENCRYPT_MODE, privateKey);
 
       return cipher.doFinal(data);
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return result;
@@ -230,7 +230,7 @@ public class RSAUtils {
     try {
       Key key = (Key) map.get(KEY_RSA_PUBLICKEY);
       str = encryptBase64(key.getEncoded());
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return str;
@@ -244,7 +244,7 @@ public class RSAUtils {
     try {
       Key key = (Key) map.get(KEY_RSA_PRIVATEKEY);
       str = encryptBase64(key.getEncoded());
-    } catch (exchangeception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return str;
@@ -256,7 +256,7 @@ public class RSAUtils {
    * @param key 需要解密的字符串
    * @return 字节数组
    */
-  public static byte[] decryptBase64(String key) throws exchangeception {
+  public static byte[] decryptBase64(String key) throws Exception {
     return (new BASE64Decoder()).decodeBuffer(key);
   }
 
@@ -266,7 +266,7 @@ public class RSAUtils {
    * @param key 需要加密的字节数组
    * @return 字符串
    */
-  public static String encryptBase64(byte[] key) throws exchangeception {
+  public static String encryptBase64(byte[] key) throws Exception {
     return (new BASE64Encoder()).encodeBuffer(key);
   }
 

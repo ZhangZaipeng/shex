@@ -11,7 +11,7 @@ import java.security.MessageDigest;
  */
 public class MD5Utils {
 
-    private final static String[] hexchangeDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+    private final static String[] hexDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
             "e", "f" };
 
     /**
@@ -21,10 +21,10 @@ public class MD5Utils {
      *            字节数组
      * @return 16进制字串
      */
-    public static String byteArrayToHexchangeString(byte[] b) {
+    public static String byteArrayToHexString(byte[] b) {
         StringBuilder resultSb = new StringBuilder();
         for (byte aB : b) {
-            resultSb.append(byteToHexchangeString(aB));
+            resultSb.append(byteToHexString(aB));
         }
         return resultSb.toString();
     }
@@ -36,14 +36,14 @@ public class MD5Utils {
      *            要转换的byte
      * @return 16进制格式
      */
-    private static String byteToHexchangeString(byte b) {
+    private static String byteToHexString(byte b) {
         int n = b;
         if (n < 0) {
             n = 256 + n;
         }
         int d1 = n / 16;
         int d2 = n % 16;
-        return hexchangeDigits[d1] + hexchangeDigits[d2];
+        return hexDigits[d1] + hexDigits[d2];
     }
 
     /**
@@ -57,8 +57,8 @@ public class MD5Utils {
         String resultString = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            resultString = byteArrayToHexchangeString(md.digest(origin.getBytes()));
-        } catch (exchangeception e) {
+            resultString = byteArrayToHexString(md.digest(origin.getBytes()));
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultString;
@@ -68,8 +68,8 @@ public class MD5Utils {
         String resultString = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            resultString = byteArrayToHexchangeString(md.digest(origin.getBytes(encoding)));
-        } catch (exchangeception e) {
+            resultString = byteArrayToHexString(md.digest(origin.getBytes(encoding)));
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultString;
@@ -82,13 +82,13 @@ public class MD5Utils {
      * @param password
      * @param
      * @return
-     * @throws exchangeception
+     * @throws Exception
      */
-    public static String MD5Salf(String id, String password, String salt) throws exchangeception {
+    public static String MD5Salf(String id, String password, String salt) throws Exception {
         try {
 
             if (StringUtils.isEmpty(salt) || StringUtils.isEmpty(password)) {
-                throw new exchangeception("[getPassword][salf=" + salt + "][id=" + id + "][password=" + password + "]");
+                throw new Exception("[getPassword][salf=" + salt + "][id=" + id + "][password=" + password + "]");
             }
 
             // 取Id的第一个数字
@@ -142,17 +142,17 @@ public class MD5Utils {
                 isOddFlag = false;
             }
             char[] charArrayStr = tmpStr.toCharArray();
-            int indexchange = 0;
+            int index = 0;
             for (int i = 0; i < charArrayStr.length; i++) {
                 if (isOddFlag) {
-                    indexchange += 3;
+                    index += 3;
                 } else {
-                    indexchange += 2;
+                    index += 2;
                 }
-                buffer.insert(indexchange, charArrayStr[i]);
+                buffer.insert(index, charArrayStr[i]);
             }
             password = buffer.toString();
-        } catch (exchangeception e) {
+        } catch (Exception e) {
             // logger.error(e.getMessage(), e);
         }
         return password;
@@ -166,7 +166,7 @@ public class MD5Utils {
                     return Integer.valueOf(String.valueOf(charArray[i]));
                 }
             }
-        } catch (exchangeception e) {
+        } catch (Exception e) {
             // logger.error(e.getMessage(), e);
         }
         return 0;
@@ -180,7 +180,7 @@ public class MD5Utils {
                     return Integer.valueOf(String.valueOf(c));
                 }
             }
-        } catch (exchangeception e) {
+        } catch (Exception e) {
             // logger.error(e.getMessage(), e);
         }
         return 0;

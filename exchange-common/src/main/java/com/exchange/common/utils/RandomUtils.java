@@ -26,7 +26,7 @@ public class RandomUtils {
     StringBuffer buffer = new StringBuffer();
     Random random = new Random();
     for (int i = 0; i < len; i++) {
-      buffer.append(allChar.charAt(random.nexchangetInt(allChar.length())));
+      buffer.append(allChar.charAt(random.nextInt(allChar.length())));
     }
     return buffer.toString();
   }
@@ -35,7 +35,7 @@ public class RandomUtils {
     StringBuffer buffer = new StringBuffer();
     Random random = new Random();
     for (int i = 0; i < len; i++) {
-      buffer.append(charStr.charAt(random.nexchangetInt(charStr.length())));
+      buffer.append(charStr.charAt(random.nextInt(charStr.length())));
     }
     return buffer.toString();
   }
@@ -45,7 +45,7 @@ public class RandomUtils {
     char[] buf = new char[length];
     int rnd;
     for (int i = 0; i < length; i++) {
-      rnd = Math.abs(r.nexchangetInt()) % src.length;
+      rnd = Math.abs(r.nextInt()) % src.length;
 
       buf[i] = src[rnd];
     }

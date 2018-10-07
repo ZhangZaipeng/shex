@@ -1,7 +1,7 @@
 package com.exchange.common.utils;
 
-import java.util.regexchange.Matcher;
-import java.util.regexchange.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CheckPwdLevelUtil {
 

@@ -1,6 +1,6 @@
 package com.exchange.common.utils.enums;
 
-import com.exchange.common.exception.ResultErrexchangeception;
+import com.exchange.common.exception.ResultErrException;
 
 public enum VerifyCodeEnum {
 
@@ -71,7 +71,7 @@ public enum VerifyCodeEnum {
     } else if (codeType == 9000) {
       return VerifyCodeEnum.updateAdmin.codeKey;
     } else {
-      throw new ResultErrexchangeception("不支持的业务类型");
+      throw new ResultErrException("不支持的业务类型");
     }
   }
 
@@ -101,7 +101,7 @@ public enum VerifyCodeEnum {
     } else if (codeType == 9000) {
       return VerifyCodeEnum.updateAdmin.codeName;
     } else {
-      throw new ResultErrexchangeception("不支持的业务类型");
+      throw new ResultErrException("不支持的业务类型");
     }
   }
 

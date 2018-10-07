@@ -14,7 +14,7 @@
 
 package com.exchange.common.utils;
 
-import java.io.UnsupportedEncodingexchangeception;
+import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
 /**
@@ -32,7 +32,7 @@ import java.security.SecureRandom;
  * String pw_hash = BCrypt.hashpw(plain_password, BCrypt.gensalt()); <br />
  * </code>
  * <p>
- * To check whether a plaintexchanget password matches one that has been hashed previously, use the
+ * To check whether a plaintext password matches one that has been hashed previously, use the
  * checkpw method:
  * <p>
  * <code>
@@ -42,13 +42,13 @@ import java.security.SecureRandom;
  * </code>
  * <p>
  * The gensalt() method takes an optional parameter (log_rounds) that determines the computational
- * complexchangeity of the hashing:
+ * complexity of the hashing:
  * <p>
  * <code>
  * String strong_salt = BCrypt.gensalt(10)<br /> String stronger_salt = BCrypt.gensalt(12)<br />
  * </code>
  * <p>
- * The amount of work increases exchangeponentially (2**log_rounds), so each increment is twice as much
+ * The amount of work increases exponentially (2**log_rounds), so each increment is twice as much
  * work. The default log_rounds is 10, and the valid range is 4 to 30.
  *
  * @author Damien Miller
@@ -327,9 +327,9 @@ public class BCrypt {
       0xb74e6132, 0xce77e25b, 0x578fdfe3, 0x3ac372e6};
 
   // bcrypt IV: "OrpheanBeholderScryDoubt". The C implementation calls
-  // this "ciphertexchanget", but it is really plaintexchanget or an IV. We keep
+  // this "ciphertext", but it is really plaintext or an IV. We keep
   // the name to make code comparison easier.
-  static private final int bf_crypt_ciphertexchanget[] = {0x4f727068, 0x65616e42, 0x65686f6c, 0x64657253,
+  static private final int bf_crypt_ciphertext[] = {0x4f727068, 0x65616e42, 0x65686f6c, 0x64657253,
       0x63727944, 0x6f756274};
 
   // Table for Base64 encoding
@@ -341,7 +341,7 @@ public class BCrypt {
       '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
   // Table for Base64 decoding
-  static private final byte indexchange_64[] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+  static private final byte index_64[] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
       -1, -1, -1, -1, 0, 1, 54, 55, 56, 57, 58, 59, 60, 61, 62,
@@ -351,7 +351,7 @@ public class BCrypt {
       32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45,
       46, 47, 48, 49, 50, 51, 52, 53, -1, -1, -1, -1, -1};
 
-  // exchangepanded Blowfish key
+  // expanded Blowfish key
   private int P[];
   private int S[];
 
@@ -362,15 +362,15 @@ public class BCrypt {
    * @param d the byte array to encode
    * @param len the number of bytes to encode
    * @return base64-encoded string
-   * @throws IllegalArgumentexchangeception if the length is invalid
+   * @throws IllegalArgumentException if the length is invalid
    */
-  private static String encode_base64(byte d[], int len) throws IllegalArgumentexchangeception {
+  private static String encode_base64(byte d[], int len) throws IllegalArgumentException {
     int off = 0;
     StringBuffer rs = new StringBuffer();
     int c1, c2;
 
     if (len <= 0 || len > d.length) {
-      throw new IllegalArgumentexchangeception("Invalid len");
+      throw new IllegalArgumentException("Invalid len");
     }
 
     while (off < len) {
@@ -405,10 +405,10 @@ public class BCrypt {
    * @return the decoded value of x
    */
   private static byte char64(char x) {
-    if (x < 0 || x > indexchange_64.length) {
+    if (x < 0 || x > index_64.length) {
       return -1;
     }
-    return indexchange_64[x];
+    return index_64[x];
   }
 
   /**
@@ -418,16 +418,16 @@ public class BCrypt {
    * @param s the string to decode
    * @param maxolen the maximum number of bytes to decode
    * @return an array containing the decoded bytes
-   * @throws IllegalArgumentexchangeception if maxolen is invalid
+   * @throws IllegalArgumentException if maxolen is invalid
    */
-  private static byte[] decode_base64(String s, int maxolen) throws IllegalArgumentexchangeception {
+  private static byte[] decode_base64(String s, int maxolen) throws IllegalArgumentException {
     StringBuffer rs = new StringBuffer();
     int off = 0, slen = s.length(), olen = 0;
     byte ret[];
     byte c1, c2, c3, c4, o;
 
     if (maxolen <= 0) {
-      throw new IllegalArgumentexchangeception("Invalid maxolen");
+      throw new IllegalArgumentException("Invalid maxolen");
     }
 
     while (off < slen - 1 && olen < maxolen) {
@@ -467,11 +467,11 @@ public class BCrypt {
   }
 
   /**
-   * Cycically exchangetract a word of key material
+   * Cycically extract a word of key material
    *
-   * @param data the string to exchangetract the data from
+   * @param data the string to extract the data from
    * @param offp a "pointer" (as a one-entry array) to the current offset into data
-   * @return the nexchanget word of material from data
+   * @return the next word of material from data
    */
   private static int streamtoword(byte data[], int offp[]) {
     int i;
@@ -503,35 +503,35 @@ public class BCrypt {
     StringBuffer rs = new StringBuffer();
 
     if (salt.charAt(0) != '$' || salt.charAt(1) != '2') {
-      throw new IllegalArgumentexchangeception("Invalid salt version");
+      throw new IllegalArgumentException("Invalid salt version");
     }
     if (salt.charAt(2) == '$') {
       off = 3;
     } else {
       minor = salt.charAt(2);
       if (minor != 'a' || salt.charAt(3) != '$') {
-        throw new IllegalArgumentexchangeception("Invalid salt revision");
+        throw new IllegalArgumentException("Invalid salt revision");
       }
       off = 4;
     }
 
-    // exchangetract number of rounds
+    // Extract number of rounds
     if (salt.charAt(off + 2) > '$') {
-      throw new IllegalArgumentexchangeception("Missing salt rounds");
+      throw new IllegalArgumentException("Missing salt rounds");
     }
     rounds = Integer.parseInt(salt.substring(off, off + 2));
 
     real_salt = salt.substring(off + 3, off + 25);
     try {
       passwordb = (password + (minor >= 'a' ? "\000" : "")).getBytes("UTF-8");
-    } catch (UnsupportedEncodingexchangeception uee) {
+    } catch (UnsupportedEncodingException uee) {
       throw new AssertionError("UTF-8 is not supported");
     }
 
     saltb = decode_base64(real_salt, BCRYPT_SALT_LEN);
 
     B = new BCrypt();
-    hashed = B.crypt_raw(passwordb, saltb, rounds, bf_crypt_ciphertexchanget.clone());
+    hashed = B.crypt_raw(passwordb, saltb, rounds, bf_crypt_ciphertext.clone());
 
     rs.append("$2");
     if (minor >= 'a') {
@@ -542,12 +542,12 @@ public class BCrypt {
       rs.append("0");
     }
     if (rounds > 30) {
-      throw new IllegalArgumentexchangeception("rounds exchangeceeds maximum (30)");
+      throw new IllegalArgumentException("rounds Exceeds maximum (30)");
     }
     rs.append(Integer.toString(rounds));
     rs.append("$");
     rs.append(encode_base64(saltb, saltb.length));
-    rs.append(encode_base64(hashed, bf_crypt_ciphertexchanget.length * 4 - 1));
+    rs.append(encode_base64(hashed, bf_crypt_ciphertext.length * 4 - 1));
     return rs.toString();
   }
 
@@ -563,14 +563,14 @@ public class BCrypt {
     StringBuffer rs = new StringBuffer();
     byte rnd[] = new byte[BCRYPT_SALT_LEN];
 
-    random.nexchangetBytes(rnd);
+    random.nextBytes(rnd);
 
     rs.append("$2a$");
     if (log_rounds < 10) {
       rs.append("0");
     }
     if (log_rounds > 30) {
-      throw new IllegalArgumentexchangeception("log_rounds exchangeceeds maximum (30)");
+      throw new IllegalArgumentException("log_rounds exceeds maximum (30)");
     }
     rs.append(Integer.toString(log_rounds));
     rs.append("$");
@@ -600,20 +600,20 @@ public class BCrypt {
   }
 
   /**
-   * Check that a plaintexchanget password matches a previously hashed one
+   * Check that a plaintext password matches a previously hashed one
    *
-   * @param plaintexchanget the plaintexchanget password to verify
+   * @param plaintext the plaintext password to verify
    * @param hashed the previously-hashed password
    * @return true if the passwords match, false otherwise
    */
-  public static boolean checkpw(String plaintexchanget, String hashed) {
+  public static boolean checkpw(String plaintext, String hashed) {
     byte hashed_bytes[];
     byte try_bytes[];
     try {
-      String try_pw = hashpw(plaintexchanget, hashed);
+      String try_pw = hashpw(plaintext, hashed);
       hashed_bytes = hashed.getBytes("UTF-8");
       try_bytes = try_pw.getBytes("UTF-8");
-    } catch (UnsupportedEncodingexchangeception uee) {
+    } catch (UnsupportedEncodingException uee) {
       return false;
     }
     if (hashed_bytes.length != try_bytes.length) {
@@ -635,7 +635,7 @@ public class BCrypt {
     System.out.println(cryptString2);
     System.out.println(cryptString3);
 
-    System.out.println(checkpw("123456","$2a$10$QhAfJ7ubn0vrUWOEexchangeToUuhejEl3BR1SdI7ELKynRJtbra06nmJte"));
+    System.out.println(checkpw("123456","$2a$10$QhAfJ7ubn0vrUWOEExToUuhejEl3BR1SdI7ELKynRJtbra06nmJte"));
   }
 
   /**
@@ -743,7 +743,7 @@ public class BCrypt {
    * @param password the password to hash
    * @param salt the binary salt to hash with the password
    * @param log_rounds the binary logarithm of the number of rounds of hashing to apply
-   * @param cdata the plaintexchanget to encrypt
+   * @param cdata the plaintext to encrypt
    * @return an array containing the binary hashed password
    */
   public byte[] crypt_raw(byte password[], byte salt[], int log_rounds, int cdata[]) {
@@ -752,11 +752,11 @@ public class BCrypt {
     byte ret[];
 
     if (log_rounds < 4 || log_rounds > 30) {
-      throw new IllegalArgumentexchangeception("Bad number of rounds");
+      throw new IllegalArgumentException("Bad number of rounds");
     }
     rounds = 1 << log_rounds;
     if (salt.length != BCRYPT_SALT_LEN) {
-      throw new IllegalArgumentexchangeception("Bad salt length");
+      throw new IllegalArgumentException("Bad salt length");
     }
 
     init_key();

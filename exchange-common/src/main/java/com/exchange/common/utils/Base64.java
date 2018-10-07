@@ -1,7 +1,7 @@
 package com.exchange.common.utils;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOexchangeception;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Random;
@@ -81,7 +81,7 @@ public class Base64 {
     int sLen = s.length();
     int numGroups = sLen / 4;
     if (4 * numGroups != sLen) {
-      throw new IllegalArgumentexchangeception("String length must be a multiple of four.");
+      throw new IllegalArgumentException("String length must be a multiple of four.");
     }
     int missingBytesInLastGroup = 0;
     int numFullGroups = numGroups;
@@ -126,7 +126,7 @@ public class Base64 {
   private static int base64toInt(char c, byte[] alphaToInt) {
     int result = alphaToInt[c];
     if (result < 0) {
-      throw new IllegalArgumentexchangeception("Illegal character " + c);
+      throw new IllegalArgumentException("Illegal character " + c);
     }
     return result;
   }
@@ -161,7 +161,7 @@ public class Base64 {
       for (int j = 0; j < numBytes; j++) {
         byte[] arr = new byte[j];
         for (int k = 0; k < j; k++) {
-          arr[k] = ((byte) rnd.nexchangetInt());
+          arr[k] = ((byte) rnd.nextInt());
         }
         String s = byteArrayToBase64(arr);
         byte[] b = base64ToByteArray(s);
@@ -241,7 +241,7 @@ public class Base64 {
         case '=':
           return 0;
         default:
-          throw new Runtimeexchangeception("unexchangepected code: " + c);
+          throw new RuntimeException("unExpected code: " + c);
       }
     }
   }
@@ -256,20 +256,20 @@ public class Base64 {
     ByteArrayOutputStream bos = new ByteArrayOutputStream();
     try {
       decode(s, bos);
-    } catch (IOexchangeception e) {
-      throw new Runtimeexchangeception();
+    } catch (IOException e) {
+      throw new RuntimeException();
     }
     byte[] decodedBytes = bos.toByteArray();
     try {
       bos.close();
       bos = null;
-    } catch (IOexchangeception exchange) {
-      System.err.println("Error while decoding BASE64: " + exchange.toString());
+    } catch (IOException ex) {
+      System.err.println("Error while decoding BASE64: " + ex.toString());
     }
     return decodedBytes;
   }
 
-  private static void decode(String s, OutputStream os) throws IOexchangeception {
+  private static void decode(String s, OutputStream os) throws IOException {
     int i = 0;
 
     int len = s.length();

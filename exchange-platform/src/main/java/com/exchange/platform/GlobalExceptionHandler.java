@@ -1,8 +1,8 @@
 package com.exchange.platform;
 
-import com.ex.common.exception.ResultErrException;
-import com.ex.common.response.ResponseCode;
-import com.ex.common.response.ResponseModel;
+import com.exchange.common.exception.ResultErrException;
+import com.exchange.common.response.ResponseCode;
+import com.exchange.common.response.ResponseModel;
 import com.exchange.platform.login.AuthenticationException;
 import com.exchange.platform.login.LoginErrException;
 import com.exchange.platform.springmvc.JsonView;

@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>exchange</name>
-	<description> 交易所</description>
+	<description>交易所</description>
 	
 	<modules>
 		<module>exchange-common</module>
@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.9.RELEASE</version>
+		<version>1.5.4.RELEASE</version>
 	</parent>
 
 	<properties>

@@ -22,7 +22,7 @@ public class MapUtils {
     return newMap;
   }
 
-  public static <K exchangetends Comparable, V> Map<K, V> sortMapByKey(Map<K, V> data) {
+  public static <K extends Comparable, V> Map<K, V> sortMapByKey(Map<K, V> data) {
     Map<K, V> data_ = new LinkedHashMap<>();
     List<K> list = new LinkedList<>(data.keySet());
     Collections.sort(list);

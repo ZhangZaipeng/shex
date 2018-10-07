@@ -31,7 +31,7 @@ public enum ApiAuthType {
         } else if (ApiAuthType.RechargeWithdraw == apiAuthType) {
             return ApiAuthType.RechargeWithdraw.authId;
         }
-        throw new Runtimeexchangeception("");
+        throw new RuntimeException("");
     }
 
     public static String getRemark(ApiAuthType apiAuthType) {
@@ -42,7 +42,7 @@ public enum ApiAuthType {
         } else if (ApiAuthType.RechargeWithdraw == apiAuthType) {
             return ApiAuthType.RechargeWithdraw.remark;
         }
-        throw new Runtimeexchangeception("");
+        throw new RuntimeException("");
     }
 
     public static String getRemark(Integer authId) {
@@ -53,7 +53,7 @@ public enum ApiAuthType {
         } else if (ApiAuthType.RechargeWithdraw.authId == authId) {
             return ApiAuthType.RechargeWithdraw.remark;
         }
-        throw new Runtimeexchangeception("");
+        throw new RuntimeException("");
     }
 
     public static int[] getAuthIds() {

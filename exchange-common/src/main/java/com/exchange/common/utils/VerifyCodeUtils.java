@@ -6,7 +6,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOexchangeception;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Random;
@@ -41,7 +41,7 @@ public class VerifyCodeUtils {
     Random rand = new Random(System.currentTimeMillis());
     StringBuilder verifyCode = new StringBuilder(verifySize);
     for (int i = 0; i < verifySize; i++) {
-      verifyCode.append(sources.charAt(rand.nexchangetInt(codesLen - 1)));
+      verifyCode.append(sources.charAt(rand.nextInt(codesLen - 1)));
     }
     return verifyCode.toString();
   }
@@ -50,7 +50,7 @@ public class VerifyCodeUtils {
    * 生成随机验证码文件,并返回验证码值
    */
   public static String outputVerifyImage(int w, int h, File outputFile, int verifySize)
-      throws IOexchangeception {
+      throws IOException {
     String verifyCode = generateVerifyCode(verifySize);
     outputImage(w, h, outputFile, verifyCode);
     return verifyCode;
@@ -60,7 +60,7 @@ public class VerifyCodeUtils {
    * 输出随机验证码图片流,并返回验证码值
    */
   public static String outputVerifyImage(int w, int h, OutputStream os, int verifySize)
-      throws IOexchangeception {
+      throws IOException {
     String verifyCode = generateVerifyCode(verifySize);
     outputImage(w, h, os, verifyCode);
     return verifyCode;
@@ -69,12 +69,12 @@ public class VerifyCodeUtils {
   /**
    * 生成指定验证码图像文件
    */
-  public static void outputImage(int w, int h, File outputFile, String code) throws IOexchangeception {
+  public static void outputImage(int w, int h, File outputFile, String code) throws IOException {
     if (outputFile == null) {
       return;
     }
     File dir = outputFile.getParentFile();
-    if (!dir.exchangeists()) {
+    if (!dir.exists()) {
       dir.mkdirs();
     }
     try {
@@ -82,7 +82,7 @@ public class VerifyCodeUtils {
       FileOutputStream fos = new FileOutputStream(outputFile);
       outputImage(w, h, fos, code);
       fos.close();
-    } catch (IOexchangeception e) {
+    } catch (IOException e) {
       throw e;
     }
   }
@@ -90,7 +90,7 @@ public class VerifyCodeUtils {
   /**
    * 输出指定验证码图片流
    */
-  public static void outputImage(int w, int h, OutputStream os, String code) throws IOexchangeception {
+  public static void outputImage(int w, int h, OutputStream os, String code) throws IOException {
     int verifySize = code.length();
     BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
     Random rand = new Random();
@@ -102,8 +102,8 @@ public class VerifyCodeUtils {
         Color.PINK, Color.YELLOW};
     float[] fractions = new float[colors.length];
     for (int i = 0; i < colors.length; i++) {
-      colors[i] = colorSpaces[rand.nexchangetInt(colorSpaces.length)];
-      fractions[i] = rand.nexchangetFloat();
+      colors[i] = colorSpaces[rand.nextInt(colorSpaces.length)];
+      fractions[i] = rand.nextFloat();
     }
     Arrays.sort(fractions);
 
@@ -118,10 +118,10 @@ public class VerifyCodeUtils {
     Random random = new Random();
     g2.setColor(getRandColor(160, 200));// 设置线条的颜色
     for (int i = 0; i < 20; i++) {
-      int x = random.nexchangetInt(w - 1);
-      int y = random.nexchangetInt(h - 1);
-      int xl = random.nexchangetInt(6) + 1;
-      int yl = random.nexchangetInt(12) + 1;
+      int x = random.nextInt(w - 1);
+      int y = random.nextInt(h - 1);
+      int xl = random.nextInt(6) + 1;
+      int yl = random.nextInt(12) + 1;
       g2.drawLine(x, y, x + xl + 40, y + yl + 20);
     }
 
@@ -129,8 +129,8 @@ public class VerifyCodeUtils {
     float yawpRate = 0.05f;// 噪声率
     int area = (int) (yawpRate * w * h);
     for (int i = 0; i < area; i++) {
-      int x = random.nexchangetInt(w);
-      int y = random.nexchangetInt(h);
+      int x = random.nextInt(w);
+      int y = random.nextInt(h);
       int rgb = getRandomIntColor();
       image.setRGB(x, y, rgb);
     }
@@ -144,7 +144,7 @@ public class VerifyCodeUtils {
     char[] chars = code.toCharArray();
     for (int i = 0; i < verifySize; i++) {
       AffineTransform affine = new AffineTransform();
-      affine.setToRotation(Math.PI / 4 * rand.nexchangetDouble() * (rand.nexchangetBoolean() ? 1 : -1),
+      affine.setToRotation(Math.PI / 4 * rand.nextDouble() * (rand.nextBoolean() ? 1 : -1),
           (w / verifySize) * i + fontSize / 2, h / 2);
       g2.setTransform(affine);
       g2.drawChars(chars, i, 1, ((w - 10) / verifySize) * i + 5, h / 2 + fontSize / 2 - 10);
@@ -161,9 +161,9 @@ public class VerifyCodeUtils {
     if (bc > 255) {
       bc = 255;
     }
-    int r = fc + random.nexchangetInt(bc - fc);
-    int g = fc + random.nexchangetInt(bc - fc);
-    int b = fc + random.nexchangetInt(bc - fc);
+    int r = fc + random.nextInt(bc - fc);
+    int g = fc + random.nextInt(bc - fc);
+    int b = fc + random.nextInt(bc - fc);
     return new Color(r, g, b);
   }
 
@@ -180,7 +180,7 @@ public class VerifyCodeUtils {
   private static int[] getRandomRgb() {
     int[] rgb = new int[3];
     for (int i = 0; i < 3; i++) {
-      rgb[i] = random.nexchangetInt(255);
+      rgb[i] = random.nextInt(255);
     }
     return rgb;
   }
@@ -192,11 +192,11 @@ public class VerifyCodeUtils {
 
   private static void shearX(Graphics g, int w1, int h1, Color color) {
 
-    int period = random.nexchangetInt(2);
+    int period = random.nextInt(2);
 
     boolean borderGap = true;
     int frames = 1;
-    int phase = random.nexchangetInt(2);
+    int phase = random.nextInt(2);
 
     for (int i = 0; i < h1; i++) {
       double d = (double) (period >> 1)
@@ -215,7 +215,7 @@ public class VerifyCodeUtils {
 
   private static void shearY(Graphics g, int w1, int h1, Color color) {
 
-    int period = random.nexchangetInt(40) + 10; // 50;
+    int period = random.nextInt(40) + 10; // 50;
 
     boolean borderGap = true;
     int frames = 20;
@@ -236,7 +236,7 @@ public class VerifyCodeUtils {
 
   }
 
-  public static void main(String[] args) throws IOexchangeception {
+  public static void main(String[] args) throws IOException {
     /*File dir = new File("c:/v");
     int w = 200, h = 80;
     for (int i = 0; i < 50; i++) {
@@ -257,23 +257,23 @@ public class VerifyCodeUtils {
     电信：133、153、180、189、（1349卫通）
     总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
     */
-    String telRegexchange = "[1][345678]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
+    String telRegex = "[1][345678]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
     if (StringUtils.isEmpty(mobiles)){
       return false;
     }
     else {
-      return mobiles.matches(telRegexchange);
+      return mobiles.matches(telRegex);
     }
   }
 
   public static boolean checkPwd(String pwd) {
-    String telRegexchange = "^(?![0-9]+$)(?![a-zA-Z]+$)(?!([^(0-9a-zA-Z)]|[\\\\(\\\\)])+$)([^(0-9a-zA-Z)]|[\\\\(\\\\)]|[a-zA-Z]|[0-9]){8,16}$";
-    //String telRegexchange ="^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?![,\\.#%'\\+\\*\\-:;^_`]+$)[,\\.#%'\\+\\*\\-:;^_`0-9A-Za-z]{8,16}$";
+    String telRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)(?!([^(0-9a-zA-Z)]|[\\\\(\\\\)])+$)([^(0-9a-zA-Z)]|[\\\\(\\\\)]|[a-zA-Z]|[0-9]){8,16}$";
+    //String telRegex ="^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?![,\\.#%'\\+\\*\\-:;^_`]+$)[,\\.#%'\\+\\*\\-:;^_`0-9A-Za-z]{8,16}$";
     if (StringUtils.isEmpty(pwd)){
       return false;
     }
     else {
-      return pwd.matches(telRegexchange);
+      return pwd.matches(telRegex);
     }
   }
 
@@ -281,13 +281,13 @@ public class VerifyCodeUtils {
    * 验证邮箱
    */
   public static boolean checkEmailTrue(String email) {
-    String emailRegexchange = "^([a-z0-9A-Z]+[-|_|.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+    String emailRegex = "^([a-z0-9A-Z]+[-|_|.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 
     if (StringUtils.isEmpty(email)){
       return false;
     }
     else {
-      return email.matches(emailRegexchange);
+      return email.matches(emailRegex);
     }
   }
 
@@ -295,13 +295,13 @@ public class VerifyCodeUtils {
    * 验证中文名字2-4位
    */
   public static boolean checkChineseNameTrue(String name) {
-    String nameRegexchange = "[\\u4E00-\\u9FA5]{2,5}(?:·[\\u4E00-\\u9FA5]{2,5})*";
+    String nameRegex = "[\\u4E00-\\u9FA5]{2,5}(?:·[\\u4E00-\\u9FA5]{2,5})*";
 
     if (StringUtils.isEmpty(name)){
       return false;
     }
     else {
-      return name.matches(nameRegexchange);
+      return name.matches(nameRegex);
     }
   }
 
@@ -309,14 +309,14 @@ public class VerifyCodeUtils {
    * 6 位数密码并且不能6位顺增\顺降\重复
    */
   public static boolean checkTransPwdTrue(String pwd) {
-    String transRegexchange = "^[0-9]*$";
+    String transRegex = "^[0-9]*$";
     String straight = "(?:(?:0(?=1)|1(?=2)|2(?=3)|3(?=4)|4(?=5)|5(?=6)|6(?=7)|7(?=8)|8(?=9)){5}|(?:9(?=8)|8(?=7)|7(?=6)|6(?=5)|5(?=4)|4(?=3)|3(?=2)|2(?=1)|1(?=0)){5})\\d";
     String duplicate = "([\\d])\\1{5,}";
 
     if (StringUtils.isEmpty(pwd) || pwd.length() != 6){
       return false;
     }
-    if(!pwd.matches(transRegexchange) || pwd.matches(straight) || pwd.matches(duplicate)){
+    if(!pwd.matches(transRegex) || pwd.matches(straight) || pwd.matches(duplicate)){
       return false;
     }
     return true;
@@ -326,12 +326,12 @@ public class VerifyCodeUtils {
    * 身份证校验
    */
   public static boolean checkIdCardTrue(String idStr) {
-    String idCardRegexchange = "^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
+    String idCardRegex = "^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
 
     if (StringUtils.isEmpty(idStr)){
       return false;
     } else {
-      return idStr.matches(idCardRegexchange) && idStr.length() == 18;
+      return idStr.matches(idCardRegex) && idStr.length() == 18;
     }
   }
 

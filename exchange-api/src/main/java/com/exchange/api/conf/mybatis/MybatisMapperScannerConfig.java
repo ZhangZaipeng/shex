@@ -4,8 +4,8 @@ import com.exchange.platform.mybatis.DefaultMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.contexchanget.annotation.Bean;
-import org.springframework.contexchanget.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration

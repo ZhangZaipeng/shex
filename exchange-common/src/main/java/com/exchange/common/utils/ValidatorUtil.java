@@ -1,14 +1,14 @@
 package com.exchange.common.utils;
 
-import com.exchange.common.exception.ResultErrexchangeception;
+import com.exchange.common.exception.ResultErrException;
 import com.exchange.common.response.ResponseCode;
 
-import java.texchanget.Parseexchangeception;
-import java.texchanget.SimpleDateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
-import java.util.regexchange.Matcher;
-import java.util.regexchange.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ValidatorUtil {
   public static final String REG_INTEGER_OR_DECIMAL = "^[0-9]+\\.{0,1}[0-9]{0,2}$";
@@ -18,13 +18,13 @@ public class ValidatorUtil {
   public static final String REG_CHINESE = "^[一-龥]{0,}$";
   public static final String REG_TELEPTHONE = "^(\\(\\d{3,4}-)|\\d{3.4}-)?\\d{7,8}$";
 
-  public static void IDCardValidate(String IDStr) throws Parseexchangeception {
+  public static void IDCardValidate(String IDStr) throws ParseException {
     String errorInfo = "";
     String[] ValCodeArr = new String[]{"1", "0", "x", "9", "8", "7", "6", "5", "4", "3", "2"};
     String[] Wi = new String[]{"7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10", "5", "8", "4", "2"};
     String Ai = "";
     if (IDStr.length() != 15 && IDStr.length() != 18) {
-      throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+      throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
     } else {
       if (IDStr.length() == 18) {
         Ai = IDStr.substring(0, 17);
@@ -33,24 +33,24 @@ public class ValidatorUtil {
       }
 
       if (!isNumeric(Ai)) {
-        throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+        throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
       } else {
         String strYear = Ai.substring(6, 10);
         String strMonth = Ai.substring(10, 12);
         String strDay = Ai.substring(12, 14);
         if (!isDate(strYear + "-" + strMonth + "-" + strDay)) {
-          throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+          throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
         } else {
           GregorianCalendar gc = new GregorianCalendar();
           SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
 
           try {
             if (gc.get(1) - Integer.parseInt(strYear) > 150 || gc.getTime().getTime() - s.parse(strYear + "-" + strMonth + "-" + strDay).getTime() < 0L) {
-              throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+              throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
             }
-          } catch (NumberFormatexchangeception var14) {
+          } catch (NumberFormatException var14) {
             var14.printStackTrace();
-          } catch (Parseexchangeception var15) {
+          } catch (ParseException var15) {
             var15.printStackTrace();
           }
 
@@ -58,7 +58,7 @@ public class ValidatorUtil {
             if (Integer.parseInt(strDay) <= 31 && Integer.parseInt(strDay) != 0) {
               Hashtable h = GetAreaCode();
               if (h.get(Ai.substring(0, 2)) == null) {
-                throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+                throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
               } else {
                 int TotalmulAiWi = 0;
 
@@ -72,17 +72,17 @@ public class ValidatorUtil {
                 Ai = Ai + strVerifyCode;
                 if (IDStr.length() == 18) {
                   if (!Ai.equals(IDStr)) {
-                    throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+                    throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
                   }
                 } else {
-                  throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+                  throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
                 }
               }
             } else {
-              throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+              throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
             }
           } else {
-            throw new ResultErrexchangeception(ResponseCode.FAIL, "请输入正确的身份证号码");
+            throw new ResultErrException(ResponseCode.FAIL, "请输入正确的身份证号码");
           }
         }
       }

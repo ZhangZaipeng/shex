@@ -1,8 +1,8 @@
 package com.exchange.common.utils;
 
-import java.texchanget.DateFormat;
-import java.texchanget.Parseexchangeception;
-import java.texchanget.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,7 +22,7 @@ public class DateDistance {
    * @return 相差天数
    */
   public static long getDistanceDays(String str1, String str2)
-      throws exchangeception {
+      throws Exception {
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     Date one;
     Date two;
@@ -39,7 +39,7 @@ public class DateDistance {
         diff = time1 - time2;
       }
       days = diff / (1000 * 60 * 60 * 24);
-    } catch (Parseexchangeception e) {
+    } catch (ParseException e) {
       e.printStackTrace();
     }
     return days;
@@ -75,7 +75,7 @@ public class DateDistance {
       hour = (diff / (60 * 60 * 1000) - day * 24);
       min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
       sec = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-    } catch (Parseexchangeception e) {
+    } catch (ParseException e) {
       e.printStackTrace();
     }
     long[] times = {day, hour, min, sec};
@@ -101,7 +101,7 @@ public class DateDistance {
     try {
       one = df.parse(str1);
       two = df.parse(str2);
-    } catch (Parseexchangeception e) {
+    } catch (ParseException e) {
       e.printStackTrace();
     }
 

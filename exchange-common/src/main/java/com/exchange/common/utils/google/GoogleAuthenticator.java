@@ -1,6 +1,6 @@
 package com.exchange.common.utils.google;
 
-import com.google.zxing.Writerexchangeception;
+import com.google.zxing.WriterException;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.awt.image.BufferedImage;
-import java.security.InvalidKeyexchangeception;
-import java.security.NoSuchAlgorithmexchangeception;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 /**
@@ -48,7 +48,7 @@ public class GoogleAuthenticator {
             byte[] bEncodedKey = codec.encode(buffer);
             String encodedKey = new String(bEncodedKey);
             return encodedKey;
-        }catch (NoSuchAlgorithmexchangeception e) {
+        }catch (NoSuchAlgorithmException e) {
             logger.error(e.getMessage());
         }
         return null;
@@ -81,9 +81,9 @@ public class GoogleAuthenticator {
      * @param user
      * @param secret
      * @return
-     * @throws Writerexchangeception
+     * @throws WriterException
      */
-    public static BufferedImage getQRcodeBufferedImage(String user,String host, String secret) throws Writerexchangeception {
+    public static BufferedImage getQRcodeBufferedImage(String user,String host, String secret) throws WriterException {
         //String format = "otpauth://totp/%s?secret=%s";
         String format = "otpauth://totp/%s@%s?secret=%s";
         return QRUtils.generateMatrixBufferedImage(String.format(format, user,host, secret));
@@ -105,9 +105,9 @@ public class GoogleAuthenticator {
             long hash;
             try {
                 hash = verifyCode(decodedKey, t + i);
-            }catch (exchangeception e) {
+            }catch (Exception e) {
                 logger.error(e.getMessage());
-                throw new Runtimeexchangeception(e.getMessage());
+                throw new RuntimeException(e.getMessage());
             }
             if (hash == code) {
                 return true;
@@ -121,10 +121,10 @@ public class GoogleAuthenticator {
      * @param key
      * @param t
      * @return
-     * @throws NoSuchAlgorithmexchangeception
-     * @throws InvalidKeyexchangeception
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeyException
      */
-    private static int verifyCode(byte[] key, long t) throws NoSuchAlgorithmexchangeception, InvalidKeyexchangeception {
+    private static int verifyCode(byte[] key, long t) throws NoSuchAlgorithmException, InvalidKeyException {
         byte[] data = new byte[8];
         long value = t;
         for (int i = 8; i-- > 0; value >>>= 8) {

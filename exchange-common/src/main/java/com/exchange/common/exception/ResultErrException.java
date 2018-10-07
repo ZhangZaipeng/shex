@@ -2,27 +2,27 @@ package com.exchange.common.exception;
 
 import com.exchange.common.response.ResponseCode;
 
-public class ResultErrexchangeception exchangetends Runtimeexchangeception {
+public class ResultErrException extends RuntimeException {
 
   private int errCode;
   private String errMsg;
 
-  public ResultErrexchangeception(ResponseCode errCode, String errMsg) {
+  public ResultErrException(ResponseCode errCode, String errMsg) {
     super(errMsg);
     this.errCode = errCode.getCode();
   }
 
-  public ResultErrexchangeception(ResponseCode responseCode) {
+  public ResultErrException(ResponseCode responseCode) {
     super(responseCode.getMsg());
     this.errCode = responseCode.getCode();
   }
 
-  public ResultErrexchangeception(int errCode, String errMsg) {
+  public ResultErrException(int errCode, String errMsg) {
     super(errMsg);
     this.errCode = errCode;
   }
 
-  public ResultErrexchangeception(String errMsg) {
+  public ResultErrException(String errMsg) {
     super(errMsg);
     this.errCode = ResponseCode.FAIL.getCode();
   }

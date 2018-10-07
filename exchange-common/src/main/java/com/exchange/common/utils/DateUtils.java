@@ -3,21 +3,21 @@ package com.exchange.common.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.texchanget.DateFormat;
-import java.texchanget.Parseexchangeception;
-import java.texchanget.SimpleDateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DateUtils {
 
-  public static Date firstDayOfNexchangetQuarter(Date date) {
+  public static Date firstDayOfNextQuarter(Date date) {
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(date);
 
     int curMonth = calendar.get(2);
-    int firstMonthOfNexchangetQuarter = curMonth / 3 * 3 + 3;
+    int firstMonthOfNextQuarter = curMonth / 3 * 3 + 3;
 
-    calendar.add(2, firstMonthOfNexchangetQuarter - curMonth);
+    calendar.add(2, firstMonthOfNextQuarter - curMonth);
     calendar.set(5, 1);
 
     return calendar.getTime();
@@ -177,7 +177,7 @@ public class DateUtils {
     DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
     try {
       return fmt.parse(date);
-    } catch (Parseexchangeception e) {
+    } catch (ParseException e) {
       e.printStackTrace();
       return null;
     }
@@ -191,8 +191,8 @@ public class DateUtils {
     try {
       fmt.parse(s);
       return true;
-    } catch (exchangeception e) {
-      // 如果throw java.texchanget.Parseexchangeception或者NullPointerexchangeception，就说明格式不对
+    } catch (Exception e) {
+      // 如果throw java.text.Parseexception或者NullPointerException，就说明格式不对
       return false;
     }
   }
@@ -210,8 +210,8 @@ public class DateUtils {
           ((fmt.parse(endTime).getTime() - fmt.parse(startTime).getTime()) / (1000 * 60 * 60 * 24))
               / 365);
       return years;
-    } catch (exchangeception e) {
-      // 如果throw java.texchanget.Parseexchangeception或者NullPointerexchangeception，就说明格式不对
+    } catch (Exception e) {
+      // 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
       return 0;
     }
   }
@@ -229,7 +229,7 @@ public class DateUtils {
     try {
       beginDate = format.parse(beginDateStr);
       endDate = format.parse(endDateStr);
-    } catch (Parseexchangeception e) {
+    } catch (ParseException e) {
       e.printStackTrace();
     }
     long day = (endDate.getTime() - beginDate.getTime()) / (24 * 60 * 60 * 1000);
@@ -458,7 +458,7 @@ public class DateUtils {
   /**
    * 获取day的下一个日期
    */
-  public static Date nexchangetDay(Date day) {
+  public static Date nextDay(Date day) {
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(day);
     calendar.add(Calendar.DATE, 1);

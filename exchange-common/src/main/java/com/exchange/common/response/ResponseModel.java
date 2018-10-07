@@ -3,7 +3,7 @@ package com.exchange.common.response;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResponseModel exchangetends HashMap<String, Object> {
+public class ResponseModel extends HashMap<String, Object> {
 
   private static final long serialVersionUID = 4672696204727508229L;
 

@@ -7,7 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.NoSuchAlgorithmexchangeception;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 public class AESUtils {
@@ -33,8 +33,8 @@ public class AESUtils {
       byte[] result = cipher.doFinal(byteContent);// 加密
 
       return new String(new BASE64Encoder().encode(result));//通过Base64转码返回
-    } catch (exchangeception exchange) {
-      exchange.printStackTrace();
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
 
     return null;
@@ -60,8 +60,8 @@ public class AESUtils {
       byte[] result = cipher.doFinal(new BASE64Decoder().decodeBuffer(content));
 
       return new String(result, "utf-8");
-    } catch (exchangeception exchange) {
-      exchange.printStackTrace();
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
 
     return null;
@@ -86,8 +86,8 @@ public class AESUtils {
       SecretKey secretKey = kg.generateKey();
 
       return new SecretKeySpec(secretKey.getEncoded(), KEY_ALGORITHM);// 转换为AES专用密钥
-    } catch (NoSuchAlgorithmexchangeception exchange) {
-      exchange.printStackTrace();
+    } catch (NoSuchAlgorithmException ex) {
+      ex.printStackTrace();
     }
     return null;
   }
