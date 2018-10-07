@@ -23,13 +23,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MyBatisConfig {
    private static final String MAPPER_LOCATION = "classpath:/com/exchange/**/mapper/*.ibatis.xml";
 
-    //@Bean
+    @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
       return new com.alibaba.druid.pool.DruidDataSource();
     }
 
-    //@Bean(name = "sqlSessionFactory")
+    @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory()
             throws Exception {
         final SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();

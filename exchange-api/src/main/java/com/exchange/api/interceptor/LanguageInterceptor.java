@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by zhangzp on 2018/8/19 下午4:30.
+ * Created by zhangzp on 2018/9/19 下午4:30.
  */
 public class LanguageInterceptor extends HandlerInterceptorAdapter {
     public static final String DEFAULT_PARAM_NAME = "locale";

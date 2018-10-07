@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class MybatisMapperScannerConfig {
 
-  //@Bean
+  @Bean
   public MapperScannerConfigurer mapperScannerConfigurer(){
     MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
     mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");

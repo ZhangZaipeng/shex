@@ -1,4 +1,4 @@
-package com.exchange.dao;
+package com.exchange.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

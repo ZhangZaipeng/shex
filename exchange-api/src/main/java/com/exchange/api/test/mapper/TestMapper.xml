@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exchange.api.test.mapper.TestMapper">
+
+    <resultMap id="r1" type="com.exchange.api.test.domain.Test">
+        <id column="id" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="r1">
+        SELECT * FROM tb_test WHERE id = #{id}
+    </select>
+
+</mapper>
