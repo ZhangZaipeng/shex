@@ -3,27 +3,25 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.shex</groupId>
-	<artifactId>shex</artifactId>
+	<groupId>com.exchange</groupId>
+	<artifactId>exchange</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>shex</name>
-	<description>shang hai exchange</description>
+	<name>exchange</name>
+	<description> 交易所</description>
 	
 	<modules>
-		<module>shex-common</module>
-		<module>shex-platform</module>
-		<module>shex-dao</module>
-		<module>shex-api-service</module>
-		<module>shex-api</module>
-		<module>shex-deploy</module>
+		<module>exchange-common</module>
+		<module>exchange-platform</module>
+		<module>exchange-api</module>
+		<module>exchange-deploy</module>
   	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.4.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -36,26 +34,26 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.shex</groupId>
-				<artifactId>shex-common</artifactId>
+				<groupId>com.exchange</groupId>
+				<artifactId>exchange-common</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.shex</groupId>
-				<artifactId>shex-platform</artifactId>
+				<groupId>com.exchange</groupId>
+				<artifactId>exchange-platform</artifactId>
 				<version>0.1</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.shex</groupId>
-				<artifactId>shex-api-service</artifactId>
+				<groupId>com.exchange</groupId>
+				<artifactId>exchange-api-service</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.shex</groupId>
-				<artifactId>shex-dao</artifactId>
+				<groupId>com.exchange</groupId>
+				<artifactId>exchange-dao</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
@@ -221,7 +219,7 @@
 					<include>**/*.ftl</include>
 					<include>**/*.yml</include>
 				</includes>
-					<excludes>
+				<excludes>
 					<exclude>**/.svn/</exclude>
 				</excludes>
 				<!--是否对主资源目录开启资源过滤-->
