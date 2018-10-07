@@ -26,6 +26,6 @@ man:
   realName: zhangzaipeng
 
 #mybatis:
-  #typeAliasesPackage: com.hwz.**.domain
+  #typeAliasesPackage: com.exchange.**.domain
   # mapperLocations: classpath:/com/exchange/**/mapper/*.ibatis.xml
   # configLocation: classpath:/mybatis-config.xml

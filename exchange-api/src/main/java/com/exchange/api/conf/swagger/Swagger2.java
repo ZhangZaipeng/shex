@@ -22,15 +22,15 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.hwz"))
+                .apis(RequestHandlerSelectors.basePackage("com.exchange"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("HWZ RESTful APIs")
-                .description("就是干")
+                .title("Ex RESTful APIs")
+                .description("就是干...")
                 .contact("ZhangZaipeng")
                 .version("1.0").licenseUrl("www.zzp.com")
                 .build();
