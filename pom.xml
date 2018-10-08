@@ -14,6 +14,7 @@
 	<modules>
 		<module>exchange-common</module>
 		<module>exchange-platform</module>
+		<module>exchange-admin</module>
 		<module>exchange-api</module>
 		<module>exchange-match</module>
 		<module>exchange-openapi</module>
