@@ -49,18 +49,6 @@
 				<version>0.1</version>
 			</dependency>
 
-			<dependency>
-				<groupId>com.exchange</groupId>
-				<artifactId>exchange-api-service</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.exchange</groupId>
-				<artifactId>exchange-dao</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-
 			<!--  slf4j-api-->
 			<dependency>
 				<groupId>org.slf4j</groupId>

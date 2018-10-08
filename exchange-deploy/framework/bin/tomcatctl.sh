@@ -43,12 +43,13 @@ prepare() {
 start() {
 	prepare
 	## 启动tomcat
-	$JAVA $JAVA_OPTIONS -jar $TOMCAT_WEBAPPS/$MODULE_NAME.jar
+	# java [-options] -jar jarfile [args...]
+	"$JAVA $JAVA_OPTIONS -jar $TOMCAT_WEBAPPS/$MODULE_NAME.jar $PRO_OPTS"
 }
 
 
 stop() {
-    BOOT_SHUTDOWN_URL=http://127.0.0.1:"$APP_PORT"/"$MODULE_NAME"/shutdown
+    BOOT_SHUTDOWN_URL="http://127.0.0.1:$APP_PORT/$MODULE_NAME/shutdown"
 	curl -X POST $BOOT_SHUTDOWN_URL
 }
 

@@ -31,10 +31,11 @@
     <profile>
       <id>api</id>
       <properties>
-        <appName>exchange-api-server</appName>
+        <appName>exchange-api</appName>
         <moduleName>api</moduleName>
         <appserverPort>8081</appserverPort>
         <appDebugPort>18081</appDebugPort>
+        <fileProName>application-product-api.yml</fileProName>
         <!--<deployhome>/home/www/htdocs/exchange-api-server/web-deploy</deployhome>-->
         <!--<output>/home/www/output/exchange-api-server</output>-->
       </properties>
